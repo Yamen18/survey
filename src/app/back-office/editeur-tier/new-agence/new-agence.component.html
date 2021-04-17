@@ -1,0 +1,217 @@
+<div class="container">
+  <form class="form-horizontal" role="form">
+    <div class='container'>
+
+      <div class='row'>
+        <div class="col-lg-12">
+          <div class="form-heading">
+            <span class="prg">Information Agency</span>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+
+        <div class="col-lg-6">
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.Name" [ngModelOptions]="{standalone: true}" placeholder="Name"
+              required />
+          </mat-form-field>
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.TaxIdentification" [ngModelOptions]="{standalone: true}"
+              placeholder="Tax Identification" required />
+          </mat-form-field>
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.TradeRegister" [ngModelOptions]="{standalone: true}"
+              placeholder="Trade Register" required />
+          </mat-form-field>
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.Email" [ngModelOptions]="{standalone: true}" placeholder="Email"
+              required />
+          </mat-form-field>
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.Password" [ngModelOptions]="{standalone: true}" placeholder="Password"
+              required />
+          </mat-form-field>
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.SphereCoinsBonus" [ngModelOptions]="{standalone: true}" placeholder="Sphere coins bonus" required />
+          </mat-form-field>
+
+        </div>
+
+        <div class="col-lg-6">
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.Phone" [ngModelOptions]="{standalone: true}" placeholder="Phone"
+              required />
+          </mat-form-field>
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.Mobile" [ngModelOptions]="{standalone: true}" placeholder="Mobile"
+              required />
+          </mat-form-field>
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.Adress" [ngModelOptions]="{standalone: true}" placeholder="Adress"
+              required />
+          </mat-form-field>
+
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.Zip" [ngModelOptions]="{standalone: true}" placeholder="ZIP" required />
+          </mat-form-field>
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.City" [ngModelOptions]="{standalone: true}" placeholder="City"
+              required />
+          </mat-form-field>
+          <mat-form-field class=" col-sm-12">
+            <input matInput [(ngModel)]="agency.Country" [ngModelOptions]="{standalone: true}" placeholder="Country"
+              required />
+          </mat-form-field>
+
+        </div>
+
+        <mat-card>
+          <div style="display: flex;">
+            <mat-card-title class="col-md-10">VMoney</mat-card-title>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <mat-divider></mat-divider>
+            <br />
+            <div>
+            </div>
+            <div *ngFor="let currency of agency.Currency;let i=index;">
+              <!-- row divider show for every nex row exclude if first row -->
+              <mat-divider></mat-divider>
+              <br />
+
+              <!-- group name in this case row index -->
+              <div>
+                <!-- unit name input field -->
+                <mat-form-field class="col-md-4">
+                  <mat-label>Currency</mat-label>
+                  <mat-select [(ngModel)]="currency.Name" [ngModelOptions]="{standalone: true}">
+                    <mat-option value="USD" selected="selected">United States Dollars</mat-option>
+                    <mat-option value="EUR">Euro</mat-option>
+                    <mat-option value="GBP">United Kingdom Pounds</mat-option>
+                    <mat-option value="DZD">Algeria Dinars</mat-option>
+                    <mat-option value="ARP">Argentina Pesos</mat-option>
+                    <mat-option value="AUD">Australia Dollars</mat-option>
+                    <mat-option value="ATS">Austria Schillings</mat-option>
+                    <mat-option value="BSD">Bahamas Dollars</mat-option>
+                    <mat-option value="BBD">Barbados Dollars</mat-option>
+                    <mat-option value="BEF">Belgium Francs</mat-option>
+                    <mat-option value="BMD">Bermuda Dollars</mat-option>
+                    <mat-option value="BRR">Brazil Real</mat-option>
+                    <mat-option value="BGL">Bulgaria Lev</mat-option>
+                    <mat-option value="CAD">Canada Dollars</mat-option>
+                    <mat-option value="CLP">Chile Pesos</mat-option>
+                    <mat-option value="CNY">China Yuan Renmimbi</mat-option>
+                    <mat-option value="CYP">Cyprus Pounds</mat-option>
+                    <mat-option value="CSK">Czech Republic Koruna</mat-option>
+                    <mat-option value="DKK">Denmark Kroner</mat-option>
+                    <mat-option value="NLG">Dutch Guilders</mat-option>
+                    <mat-option value="XCD">Eastern Caribbean Dollars</mat-option>
+                    <mat-option value="EGP">Egypt Pounds</mat-option>
+                    <mat-option value="FJD">Fiji Dollars</mat-option>
+                    <mat-option value="FIM">Finland Markka</mat-option>
+                    <mat-option value="FRF">France Francs</mat-option>
+                    <mat-option value="DEM">Germany Deutsche Marks</mat-option>
+                    <mat-option value="XAU">Gold Ounces</mat-option>
+                    <mat-option value="GRD">Greece Drachmas</mat-option>
+                    <mat-option value="HKD">Hong Kong Dollars</mat-option>
+                    <mat-option value="HUF">Hungary Forint</mat-option>
+                    <mat-option value="ISK">Iceland Krona</mat-option>
+                    <mat-option value="INR">India Rupees</mat-option>
+                    <mat-option value="IDR">Indonesia Rupiah</mat-option>
+                    <mat-option value="IEP">Ireland Punt</mat-option>
+                    <mat-option value="ILS">Israel New Shekels</mat-option>
+                    <mat-option value="ITL">Italy Lira</mat-option>
+                    <mat-option value="JMD">Jamaica Dollars</mat-option>
+                    <mat-option value="JPY">Japan Yen</mat-option>
+                    <mat-option value="JOD">Jordan Dinar</mat-option>
+                    <mat-option value="KRW">Korea (South) Won</mat-option>
+                    <mat-option value="LBP">Lebanon Pounds</mat-option>
+                    <mat-option value="LUF">Luxembourg Francs</mat-option>
+                    <mat-option value="MYR">Malaysia Ringgit</mat-option>
+                    <mat-option value="MXP">Mexico Pesos</mat-option>
+                    <mat-option value="NLG">Netherlands Guilders</mat-option>
+                    <mat-option value="NZD">New Zealand Dollars</mat-option>
+                    <mat-option value="NOK">Norway Kroner</mat-option>
+                    <mat-option value="PKR">Pakistan Rupees</mat-option>
+                    <mat-option value="XPD">Palladium Ounces</mat-option>
+                    <mat-option value="PHP">Philippines Pesos</mat-option>
+                    <mat-option value="XPT">Platinum Ounces</mat-option>
+                    <mat-option value="PLZ">Poland Zloty</mat-option>
+                    <mat-option value="PTE">Portugal Escudo</mat-option>
+                    <mat-option value="ROL">Romania Leu</mat-option>
+                    <mat-option value="RUR">Russia Rubles</mat-option>
+                    <mat-option value="SAR">Saudi Arabia Riyal</mat-option>
+                    <mat-option value="XAG">Silver Ounces</mat-option>
+                    <mat-option value="SGD">Singapore Dollars</mat-option>
+                    <mat-option value="SKK">Slovakia Koruna</mat-option>
+                    <mat-option value="ZAR">South Africa Rand</mat-option>
+                    <mat-option value="KRW">South Korea Won</mat-option>
+                    <mat-option value="ESP">Spain Pesetas</mat-option>
+                    <mat-option value="XDR">Special Drawing Right (IMF)</mat-option>
+                    <mat-option value="SDD">Sudan Dinar</mat-option>
+                    <mat-option value="SEK">Sweden Krona</mat-option>
+                    <mat-option value="CHF">Switzerland Francs</mat-option>
+                    <mat-option value="TWD">Taiwan Dollars</mat-option>
+                    <mat-option value="THB">Thailand Baht</mat-option>
+                    <mat-option value="TTD">Trinidad and Tobago Dollars</mat-option>
+                    <mat-option value="TRL">Turkey Lira</mat-option>
+                    <mat-option value="VEB">Venezuela Bolivar</mat-option>
+                    <mat-option value="ZMK">Zambia Kwacha</mat-option>
+                    <mat-option value="EUR">Euro</mat-option>
+                    <mat-option value="XCD">Eastern Caribbean Dollars</mat-option>
+                    <mat-option value="XDR">Special Drawing Right (IMF)</mat-option>
+                    <mat-option value="XAG">Silver Ounces</mat-option>
+                    <mat-option value="XAU">Gold Ounces</mat-option>
+                    <mat-option value="XPD">Palladium Ounces</mat-option>
+                    <mat-option value="XPT">Platinum Ounces</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <!-- lang title input field -->
+                <mat-form-field class="col-md-4">
+                  <input [(ngModel)]="currency.ExchangeRate" [ngModelOptions]="{standalone: true}" matInput
+                    placeholder="exchange rate" type="number" required />
+                </mat-form-field>
+
+                <button type="button" class="col-md-2" mat-raised-button (click)="addNewCurrency()">
+                  <mat-icon>add box</mat-icon>
+                  Add Currency
+                </button>
+
+                <button *ngIf="agency.Currency.length > 1" class="col-md-2" type="button" mat-raised-button
+                  (click)="deleteCurrency(i)">
+                  <mat-icon>remove_circle</mat-icon>
+                  Delete
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+
+        </mat-card>
+      </div>
+
+
+
+    </div>
+
+    <main class="page__footer">
+      <button class="button button--large command command--unselected" style="margin:0 1em" (click)="addNewAgency()">
+        Add Agency
+      </button>
+
+    </main>
+  </form>
+
+</div>

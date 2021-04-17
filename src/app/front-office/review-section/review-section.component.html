@@ -1,0 +1,34 @@
+  <section class="card card--horizontal card--center-vertically command" [ngStyle]="{'background-color': sectionColor }">
+    <main class="card__content health-dimension-card__indicator-and-trend">
+      <div class="health-dimension-card__indicator health-indicator" [ngStyle]="{'background-color': spanColor }">
+        <span class="health-indicator__number">
+          {{moyenne}}
+        </span>
+      </div>
+    </main>
+    <main class="card__content">
+      <h3 class="survey-dimension-name">Delivering Value</h3>
+      <p class="survey-dimension-description">
+        Good: We deliver great stuff! We're proud of it and our stakeholders are really happy.  Bad: We deliver crap. We feel ashamed to deliver it. Our stakeholders hate us.
+      </p>
+    </main>
+    <main class="card__content health-dimension-card__badges">
+      <div class="badge count">
+        <span class="count__content" (click)="displayRightSide('agreements')">
+          <svg class="icon count__icon" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0
+              12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"></path>
+          </svg>
+        </span>
+        <span class="count__value" style="color: #000;">2</span>
+      </div>
+      <div class="badge count">
+        <span class="count__content" (click)="displayRightSide('comments')">
+          <svg class="icon count__icon" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M9,22A1,1 0 0,1 8,21V18H4A2,2 0 0,1 2,16V4C2,2.89 2.9,2 4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H13.9L10.2,21.71C10,21.9 9.75,22 9.5,22V22H9Z"></path>
+          </svg>
+        </span>
+        <span class="count__value" style="color: #000;">1</span>
+      </div>
+    </main>
+  </section>

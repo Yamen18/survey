@@ -1,0 +1,48 @@
+<main class="meeting__main__inner">
+  <div class="grid grid--center-vertically">
+    <h2 class="page__subheading column column--remaining">
+      Approved Action
+    </h2>
+  </div>
+  <div class="create-action">
+    <section class="action-create action-create--wide">
+      <!--icoon not-->
+      <section class="field field--opaque field--no-margin">
+        <input class="comment__text emoji-picker__target gif-picker__target specific-input" placeholder="Add approved action ..."
+               (keydown.enter)="addNewAgreement()"
+               [(ngModel)]="agreement.Name" style="height: 34px; box-sizing: border-box;" />
+      </section>
+      <nav *ngIf="agreement.Name.length > 0" class="action-create__actions">
+        <button class="action-create__action button button--outline command button--primary" (click)="addNewAgreement()">
+          Add
+        </button>
+      </nav>
+    </section>
+  </div>
+  <div class="actionList">
+    <div *ngFor="let agreement of agreementsList;let i=index;">
+      <div id="card"></div>
+      <article class="action-card dropdown__target action-card--action command">
+        <svg class="icon action-card__icon" viewBox="0 0 24 24" width="24" height="24">
+          <path d="M11 6H14L17.29 2.7A1 1 0 0 1 18.71 2.7L21.29 5.29A1 1 0 0 1 21.29 6.7L19 9H11V11A1 1 0 0 1 10 12A1 1 0 0 1 9 11V8A2 2 0 0 1 11 6M5 11V15L2.71 17.29A1 1 0 0 0 2.71 18.7L5.29 21.29A1 1 0 0 0 6.71 21.29L11 17H15A1 1 0 0 0 16 16V15H17A1 1 0 0 0 18 14V13H19A1 1 0 0 0 20 12V11H13V12A2 2 0 0 1 11 14H9A2 2 0 0 1 7 12V9Z"></path>
+        </svg>
+        <main class="card__content">
+          <p class="action__title">
+            <span>{{agreement.Name}}</span>
+          </p>
+        </main>
+        <footer class="card__actions">
+            <input style="border-color: transparent!important;width: 35%;" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+
+           <span style="display: flex;" title="Assigned To">
+            <i class="material-icons" style="color: #00b8d4;">account_circle</i>
+           </span> 
+        </footer>
+      </article>
+
+    </div>
+    <div *ngIf="agreementsList.length == 0" class="placeholder-block">No agreements yet</div>
+  </div>
+</main>

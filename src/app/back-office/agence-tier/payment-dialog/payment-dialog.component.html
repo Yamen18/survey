@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="info">
+        <h1>Payment Session</h1>
+    </div>
+    <form class="form">
+        <header class="header">
+            <h1 class="h1_Style">Payment of $145.00</h1>
+            <div class="card-type" #paymentMode>
+                <a class="card active" (click)="changeModePayment(0,paymentMode,'card')">
+                    <span>
+                        <i class="material-icons">credit_card</i>
+                    </span>
+                </a>
+
+                <a class="card" (click)="changeModePayment(1,paymentMode,'shperCoins')">
+                    <span>
+                        <i class="material-icons">attach_money</i>
+                    </span>
+                </a>
+
+            </div>
+        </header>
+        <div class="contentPayment">
+            <div *ngIf="mode=='card'" class="form" style="display: block;height: 259px;
+            padding-top: 0px;margin-top: 0px;padding-bottom: 0px;margin-bottom: 0px;">
+                <div class="form-row">
+                    <div style="width: 100%;" class="input-group">
+                        <label class="label-payment" for="">Name on card</label>
+                        <input class="input-payment" placeholder="" type="text">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div style="width: 100%;" class="input-group">
+                        <label class="label-payment" for="">Card Number</label>
+                        <input class="input-payment" maxlength="16" placeholder="" type="number">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div style="width: 60%;margin: 0 15px 0 0;" class="input-group">
+                        <label class="label-payment" for="">Expiry Date</label>
+                        <input class="input-payment" placeholder="" type="month">
+                    </div>
+                    <div style="width: 30%;margin: 0 0 0 15px;" class="input-group">
+                        <label class="label-payment" for="">CVS</label>
+                        <input class="input-payment" maxlenght="4" placeholder="" type="number">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="mode=='shperCoins'" class="form" style="display: block;height: 259px;
+            padding-top: 0px;margin-top: 0px;padding-bottom: 0px;margin-bottom: 0px;">
+                <div class="form-row">
+                    <div style="width: 100%;" class="input-group">
+                        <label class="label-payment" for="">Solde Initial</label>
+                        <input disabled class="input-payment" value="1500" type="text">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div style="width: 100%;" class="input-group">
+                        <label class="label-payment" for="">bonus</label>
+                        <input disabled class="input-payment" value="2000" type="text">
+                    </div>
+                </div>
+ 
+
+            </div>
+        </div>
+        <footer class="footer">
+            <button (click)="closePaymentDialog()" class="btnPayment">Complete Payment</button>
+        </footer>
+    </form>
+</div>

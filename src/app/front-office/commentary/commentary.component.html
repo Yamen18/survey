@@ -1,0 +1,44 @@
+<article class="comment comment--editing comment--mine">
+  <!--avatar-->
+  <main class="comment__bubble" style="display:flex;">
+    <div class="comment__text-container specific-input">
+      <input #commentInput class="comment__text emoji-picker__target gif-picker__target " (keydown.enter)="addNewComment()" placeholder="Add comment..." style="height: 34px; box-sizing: border-box;" [(ngModel)]="commentary.Commentary" />
+      <!--<div class="typing-indicator" style="z-index:1024!important;">-->
+      <svg class="icon" #toggleButton viewBox="0 0 24 24" width="24" height="24" (click)="displayEmojiPopUp()">
+        <path d="M20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12M22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2A10,10 0 0,1 22,12M10,9.5C10,10.3 9.3,11 8.5,11C7.7,11 7,10.3 7,9.5C7,8.7 7.7,8 8.5,8C9.3,8 10,8.7 10,9.5M17,9.5C17,10.3 16.3,11 15.5,11C14.7,11 14,10.3 14,9.5C14,8.7 14.7,8 15.5,8C16.3,8 17,8.7 17,9.5M12,17.23C10.25,17.23 8.71,16.5 7.81,15.42L9.23,14C9.68,14.72 10.75,15.23 12,15.23C13.25,15.23 14.32,14.72 14.77,14L16.19,15.42C15.29,16.5 13.75,17.23 12,17.23Z">
+        </path>
+      </svg>
+
+      <button *ngIf="commentary.Mode =='edit'" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="bottom: 4px!important;outline: none!important;">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+
+        <button  mat-menu-item>
+          <span> Reply to comment </span>
+        </button>
+
+        <button  mat-menu-item>
+          <span class="cycle mif-pencil"> Edit comment </span>
+        </button>
+
+        <button  mat-menu-item (click)="removeComment(commentary.Id,comments)">
+          <span style="color:red"> Remove comment </span>
+        </button>
+
+
+      </mat-menu>
+      <!--</div>-->
+    </div>
+
+  </main>
+</article>
+<div *ngIf="displayPopUp" #emojiPopUp>
+  <emoji-mart (emojiClick)="addEmoji($event)"
+              [showPreview]="false"
+              [emojiSize]="20"
+              [isNative]="true"
+              [style]="{ position: 'absolute', right: '20px' }"></emoji-mart>
+</div>
+
+

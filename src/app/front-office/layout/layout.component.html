@@ -1,0 +1,161 @@
+<div class="body">
+  <mat-sidenav-container class="example-container" autosize>
+
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+      <mat-nav-list>
+
+        <section class="navigation-drawer__header">
+          <p style=" color: #9de8ea;text-align: center;">User Connected : <span>{{userConnected}}</span></p>
+        </section>
+
+        <section class="navigation-drawer__content scrollable custom-scrollbars">
+          <h3 class="navigation-drawer__heading hidden-phone" style="position: relative;">health check</h3>
+          <p class="navigation-drawer__item command--selected">Demo Health Check</p>
+        </section>
+
+        <nav class="step-navigation" #stepps>
+          <a (click)="selectedStep(0,stepps,'Shared')" class="step-navigation__step navigation-drawer__item command command--disabled command--selected step-navigation__step--current">Shared</a>
+          <a (click)="selectedStep(1,stepps,'Summary')" class="step-navigation__step navigation-drawer__item command command--unselected">Summary</a>
+          <a (click)="selectedStep(2,stepps,'Review')" class="step-navigation__step navigation-drawer__item command command--unselected">Review</a>
+          <a (click)="selectedStep(3,stepps,'Form')" class="step-navigation__step navigation-drawer__item command command--unselected">Form</a>
+        </nav>
+
+        <footer style=" position: absolute;bottom: 0px;">
+          <button class="button_logout" (click)="logOut()">Logout</button>
+        </footer>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!--<mat-sidenav #sidenavRight class="example-sidenav" position="end" opened="true">
+      <mat-nav-list>
+        test
+      </mat-nav-list>
+    </mat-sidenav>-->
+
+    <div class="example-sidenav-content">
+      <div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="header" style="display:flex;background-color: #005c71;">
+        <div class="arrow-steps clearfix">
+          <div class="step current"> 
+            <span>{{stepName}} </span>
+           </div>
+        </div>
+      </div>
+
+      <div *ngIf="current == 0" style=" height: 100%;">
+        <div class="hidden-print step-header step-header--facilitator">
+          <section class="step-header__participant">
+            <section class="step-header__instructions">
+              Rate each health dimension
+              <span style="color:#000000"> You've rated {{nbreOfRated}}/{{nbreOfDimensions}}</span>
+            </section>
+          </section>
+        </div>
+        <main class="main-inner-survey" style="height: 90%;overflow-y: auto;background-color: #eceff1;">
+
+          <div *ngFor="let survey of ListOfSurvey">
+            <app-main-survey [survey]="survey"></app-main-survey>
+            <hr />
+          </div>
+
+          <main class="page__footer">
+            <button class="button button--large command command--unselected" style="margin:0 1em" (click)="selectedStep(1,stepps,'Summary')">
+              Submit
+              <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+              </svg>
+            </button>
+
+          </main>
+        </main>
+      </div>
+
+      <div *ngIf="current == 1" style=" height: 100%;">
+        <div class="hidden-print step-header step-header--facilitator" style="background-color: #f5f7f8;">
+          <section class="step-header__participant">
+            <section class="step-header__instructions">
+              Discuss and identify actions
+            </section>
+          </section>
+        </div>
+        <div style="display:flex;height:100%">
+          <main class="review__main">
+
+            <div style="padding:4em;">
+              <app-chart-radar></app-chart-radar>
+              <div class="example-sidenav-content">
+                <div style="padding: 1rem;">
+                  <app-review-section [moyenne]="0.8" (selectedComments)="getSelectedObject($event)"></app-review-section>
+                </div>
+               <div style="padding: 1rem;">
+                <app-review-section [moyenne]="1.2" (selectedComments)="getSelectedObject($event)"></app-review-section>
+               </div>
+               <div style="padding: 1rem;">
+                <app-review-section [moyenne]="2.2" (selectedComments)="getSelectedObject($event)"></app-review-section>
+               </div>
+               <div style="padding: 1rem;">
+                <app-review-section [moyenne]="3.2" (selectedComments)="getSelectedObject($event)"></app-review-section>
+               </div>
+               <div style="padding: 1rem;">
+                <app-review-section [moyenne]="4.5" (selectedComments)="getSelectedObject($event)"></app-review-section>
+               </div>
+              </div>          
+            </div>
+            <main class="page__footer">
+              <button class="button button--large command command--unselected" style="margin:0 1em" (click)="selectedStep(2,stepps,'Review');listOfComme = [];">
+                Review
+                <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                </svg>
+              </button>
+            </main>
+          </main>
+
+          <div id="rightSideSynthese" style="width: 0%;height: 100%;background-color: #eceff1;transition: 0.5s;">
+            <div *ngIf="type == 'comments'" style="padding: 2rem;" >
+              <div class="carousel__opaque" *ngFor="let commentary of listOfComme; let i= index;">
+                <app-commentary [commentary]="commentary" [comments]="listOfComme"></app-commentary>
+              </div>
+            </div>
+            <div *ngIf="type == 'agreements'">
+              <app-agreement [agreementsList]="agreementsList"></app-agreement>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="current == 2" style=" height: 100%;">
+        <div class="hidden-print step-header step-header--facilitator" style="background-color: #f5f7f8;">
+          <section class="step-header__participant">
+            <section class="step-header__instructions">
+              Here's your current list of actions for review
+            </section>
+          </section>
+        </div>
+        <main class="review__main">
+          <app-main-review></app-main-review>
+          <main class="page__footer">
+            <button class="button button--large command command--unselected" style="margin:0 1em" (click)="selectedStep(3,stepps,'Summary')">
+              From
+              <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+              </svg>
+            </button>
+
+          </main>
+        </main>
+      </div>
+
+      <main class="main-inner" *ngIf="current == 3">
+        <section style="max-width: 70em; margin: auto;display:block;">
+          <div class="section-dimension-rate">
+            Step 3 = SHARED
+          </div>
+        </section>
+      </main>
+
+
+    </div>
+
+
+  </mat-sidenav-container>
+</div>

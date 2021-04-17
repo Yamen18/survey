@@ -1,0 +1,229 @@
+<div class="meeting-main-review scrollable custom-scrollbars" style="height:100%;">
+  <!--new action-->
+  <main class="meeting__main__inner">
+    <div class="grid grid--center-vertically">
+      <h2 class="page__heading column column--remaining">
+        Demo Health Check
+        health check
+        action plan
+      </h2>
+    </div>
+    <div class="create-action">
+      <section class="action-create action-create--wide">
+        <section class="field field--opaque field--no-margin">
+          <input class="comment__text emoji-picker__target gif-picker__target specific-input" placeholder="Propose action..."
+                 (keydown.enter)="addNewProposeAction()"
+                 [(ngModel)]="action.Name" style="height: 34px; box-sizing: border-box;" />
+        </section>
+        <nav *ngIf="action.Name.length > 0" class="action-create__actions">
+          <button class="action-create__action button button--outline command button--primary" (click)="addNewProposeAction()">
+            Propose
+          </button>
+        </nav>
+      </section>
+    </div>
+
+    <h4 *ngIf="actionsList.length != 0" class="meeting-pane__subheading" style="transform: none; transition: none 0s ease 0s;">Proposed actions</h4>
+    <div class="actionList">
+      <div *ngFor="let action of actionsList;let i=index;">
+        <div id="card"></div>
+        <article #sectionAction class="action-card dropdown__target action-card--action command">
+          <main class="card__content">
+            <p class="action__title">
+              <span>{{action.Name}}</span>
+              <small *ngIf="action.Status == 'rejected'" style="margin-left:2px">'Rejected'</small>
+            </p>
+          </main>
+          <footer class="card__actions">
+            <div *ngIf="action.Status != 'rejected'" class="segment-button segment-button--inline segment-button--compact">
+              <button title="I support this" class="segment-button__button button poll__button popover popover__target command tether-target tether-element-attached-top tether-target-attached-bottom tether-element-attached-center tether-target-attached-center">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                <circle cx="12" cy="12" fill="#ffd54f" r="12"></circle>
+                <path d="m21.555.964c-.579 0-1.125.195-1.555.531-.43-.336-.976-.531-1.555-.531-1.348 0-2.445 1.048-2.445 2.336 0 2.007 2.975 4.185 3.57 4.601.13.09.28.135.43.135s.3-.045.43-.135c.595-.417 3.57-2.594 3.57-4.601 0-1.288-1.097-2.336-2.445-2.336z" fill="#e53935"></path>
+                <path d="m5.555 16.964c-.579 0-1.125.195-1.555.531-.43-.336-.976-.531-1.555-.531-1.348 0-2.445 1.048-2.445 2.336 0 2.007 2.975 4.185 3.57 4.601.13.09.28.135.43.135s.3-.045.43-.135c.595-.417 3.57-2.594 3.57-4.601 0-1.288-1.097-2.336-2.445-2.336z" fill="#e53935"></path>
+                <g fill="#6d4c41">
+                  <path d="m9.25 11.25c-.414 0-.75-.336-.75-.75 0-.551-.448-1-1-1s-1 .449-1 1c0 .414-.336.75-.75.75s-.75-.336-.75-.75c0-1.378 1.121-2.5 2.5-2.5s2.5 1.122 2.5 2.5c0 .414-.336.75-.75.75z"></path>
+                  <path d="m18.25 11.25c-.414 0-.75-.336-.75-.75 0-.551-.448-1-1-1s-1 .449-1 1c0 .414-.336.75-.75.75s-.75-.336-.75-.75c0-1.378 1.121-2.5 2.5-2.5s2.5 1.122 2.5 2.5c0 .414-.336.75-.75.75z"></path>
+                  <path d="m12 18c-2.184 0-4.236-.85-5.78-2.395-.293-.293-.293-.768 0-1.061s.768-.293 1.061 0c1.26 1.262 2.936 1.956 4.719 1.956s3.459-.694 4.72-1.955c.293-.293.768-.293 1.061 0s.293.768 0 1.061c-1.545 1.544-3.597 2.394-5.781 2.394z"></path>
+                </g>
+                </svg>
+                
+                <!-- <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z"></path>
+                </svg> -->
+                <!--count like-->
+              </button>
+              <button title="I'm neutral" class="segment-button__button button poll__button popover popover__target command tether-target tether-element-attached-top tether-target-attached-bottom command--unselected tether-element-attached-center tether-target-attached-center">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <g id="color">
+                  <g>
+                    <circle cx="12" cy="12" fill="#ffd54f" r="10.8">
+                </circle>
+              </g>
+              <g>
+                <circle cx="7" cy="9" fill="#6d4c41" r="1.8">                  
+                </circle>
+              </g>
+              <g>
+                <circle cx="17" cy="9" fill="#6d4c41" r="1.8">
+
+                </circle>
+              </g>
+            </g>
+            <g id="regular">
+              <g>
+                <path d="m12 24c-6.617 0-12-5.383-12-12s5.383-12 12-12 12 5.383 12 12-5.383 12-12 12zm0-22.5c-5.79 0-10.5 4.71-10.5 10.5s4.71 10.5 10.5 10.5 10.5-4.71 10.5-10.5-4.71-10.5-10.5-10.5z"></path>
+              </g>
+              <g>
+                <path d="m7 11.065c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2zm0-2.5c-.276 0-.5.224-.5.5s.224.5.5.5.5-.224.5-.5-.224-.5-.5-.5z"></path>
+              </g>
+              <g>
+                <path d="m17 11.065c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2zm0-2.5c-.276 0-.5.224-.5.5s.224.5.5.5.5-.224.5-.5-.224-.5-.5-.5z"></path>
+              </g>
+              <g>
+                <path d="m15.25 18h-6.5c-.414 0-.75-.336-.75-.75s.336-.75.75-.75h6.5c.414 0 .75.336.75.75s-.336.75-.75.75z"></path>
+              </g>
+            </g>
+                </svg>
+                
+                <!-- <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M22.5,10H15.75C15.13,10 14.6,10.38 14.37,10.91L12.11,16.2C12.04,16.37 12,16.56 12,16.75V18A1,1 0 0,0 13,19H18.18L17.5,22.18V22.42C17.5,22.73 17.63,23 17.83,23.22L18.62,24L23.56,19.06C23.83,18.79 24,18.41 24,18V11.5A1.5,1.5 0 0,0 22.5,10M12,6A1,1 0 0,0 11,5H5.82L6.5,1.82V1.59C6.5,1.28 6.37,1 6.17,0.79L5.38,0L0.44,4.94C0.17,5.21 0,5.59 0,6V12.5A1.5,1.5 0 0,0 1.5,14H8.25C8.87,14 9.4,13.62 9.63,13.09L11.89,7.8C11.96,7.63 12,7.44 12,7.25V6Z"></path>
+                </svg> -->
+              </button>
+              <button title="I don't support this" class="segment-button__button button poll__button popover popover__target command tether-target tether-element-attached-top tether-target-attached-bottom command--unselected tether-element-attached-center tether-target-attached-center">
+                <svg viewBox="0 0 512 512"  width="24" height="24">
+                  <path style="fill:#E24B4B;" d="M512,256c0,141.44-114.72,256-256,256C114.56,512,0,397.44,0,256C0,114.72,114.56,0,256,0
+                    C397.28,0,512,114.72,512,256z"></path>
+                  <path style="fill:#D03F3F;" d="M512,256c0,141.44-114.72,256-256,256c-80.64,0-152.64-37.28-199.36-95.52
+                    c43.84,35.2,99.36,56.16,160,56.16c141.28,0,256-114.56,256-256c0-60.64-20.96-116.16-56.32-160C474.72,103.52,512,175.36,512,256z"></path>
+                  <g>
+                    <path style="fill:#3E4347;" d="M203.472,205.552c-3.232,0-6.288-1.568-8.16-4.224C177.6,176.336,153.424,160.4,119.2,151.216
+                      c-5.328-1.44-8.496-6.928-7.056-12.256c1.44-5.344,6.896-8.464,12.256-7.056c33.072,8.896,58.832,24.144,78.288,46.48
+                      l14.032-21.696c2.976-4.64,9.2-5.968,13.808-2.976c4.64,3.008,5.968,9.184,2.976,13.824l-21.632,33.44
+                      c-1.792,2.784-4.864,4.496-8.176,4.576C203.6,205.552,203.52,205.552,203.472,205.552z"></path>
+                    <ellipse style="fill:#3E4347;" cx="162.208" cy="250.544" rx="40.416" ry="45.952"></ellipse>
+                    <path style="fill:#3E4347;" d="M308.528,205.552c-0.08,0-0.144,0-0.224,0c-3.312-0.064-6.368-1.792-8.192-4.576l-21.616-33.44
+                      c-2.992-4.64-1.664-10.832,2.976-13.824c4.624-3.008,10.832-1.664,13.824,2.976l14,21.68c19.472-22.32,45.216-37.584,78.304-46.464
+                      c5.36-1.456,10.816,1.712,12.256,7.056c1.44,5.328-1.728,10.816-7.056,12.256c-34.224,9.2-58.4,25.12-76.128,50.128
+                      C314.816,203.984,311.76,205.552,308.528,205.552z"></path>
+                    <ellipse style="fill:#3E4347;" cx="349.792" cy="250.544" rx="40.416" ry="45.952"></ellipse>
+                    <path style="fill:#3E4347;" d="M329.616,401.424c-18.864-19.728-45.84-31.024-74.048-31.024s-55.184,11.312-74.048,31.024
+                      c-6.128,6.4-16.272,6.592-22.624,0.496c-6.384-6.112-6.608-16.24-0.496-22.624c24.88-26,60.288-40.896,97.168-40.896
+                      c36.896,0,72.304,14.912,97.168,40.896c6.112,6.384,5.888,16.512-0.496,22.624C345.888,408.016,335.744,407.824,329.616,401.424z"></path>
+                  </g>
+                  <g>
+                    <path style="fill:#5A5F63;" d="M372.272,244.224c-3.456,1.392-7.856-1.504-9.936-6.496c-1.952-5.008-0.848-10.16,2.608-11.552
+                      c3.584-1.408,8,1.488,9.936,6.496C376.96,237.648,375.728,242.832,372.272,244.224z"></path>
+                    <path style="fill:#5A5F63;" d="M183.024,244.224c-3.456,1.392-7.856-1.504-9.936-6.496c-1.936-5.008-0.848-10.16,2.624-11.552
+                      c3.584-1.408,8,1.488,9.936,6.496C187.712,237.648,186.48,242.832,183.024,244.224z"></path>
+                  </g>
+      
+                  </svg>
+                <!-- <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M19,15H23V3H19M15,3H6C5.17,3 4.46,3.5 4.16,4.22L1.14,11.27C1.05,11.5 1,11.74 1,12V14A2,2 0 0,0 3,16H9.31L8.36,20.57C8.34,20.67 8.33,20.77 8.33,20.88C8.33,21.3 8.5,21.67 8.77,21.94L9.83,23L16.41,16.41C16.78,16.05 17,15.55 17,15V5C17,3.89 16.1,3 15,3Z">
+                  </path>
+                </svg> -->
+              </button>
+            </div>
+
+            <button *ngIf="action.Status != 'rejected'" (click)="rejectedPropose(i,sectionAction)" title="Don't accept" class="button button--icon button--facilitator button--dangerous command popover popover__target tether-target tether-element-attached-top tether-target-attached-bottom tether-element-attached-center tether-target-attached-center">
+              <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                <path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z">
+                </path>
+              </svg>
+            </button>
+            <button *ngIf="action.Status != 'rejected'" (click)="acceptProposedAction(i)" title="Accept" class="button button--icon button--facilitator button--primary command popover popover__target tether-target tether-element-attached-top tether-target-attached-bottom tether-element-attached-center tether-target-attached-center">
+              <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"></path>
+              </svg>
+            </button>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="outline: none !important; width: 15px; height: 35px; bottom: 4px; right: 4px;">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+
+              <button [disabled]="action.Status == 'rejected'"  mat-menu-item (click)="rejectedPropose(i,sectionAction)">
+                <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z">
+                  </path>
+                </svg>
+                <span style="padding: 15px;">Don't accept</span>
+              </button>
+
+              <button mat-menu-item (click)="acceptProposedAction(i)">
+                <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"></path>
+                </svg>
+                <span style="padding: 15px;">Accept</span>
+              </button>
+
+              <button mat-menu-item (click)="deleteProposedAction(i)">
+                <svg class="icon dropdown-menu__item__icon" viewBox="0 0 24 24" width="24" height="24">
+                <path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z"></path>
+                </svg>
+                <span style="color: red;padding: 15px;"> Remove Propose </span>
+              </button>
+
+
+            </mat-menu>
+          </footer>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!--agreement-->
+  <app-agreement [agreementsList]="agreementsList"></app-agreement>
+  <!--<main class="meeting__main__inner">
+    <div class="grid grid--center-vertically">
+      <h2 class="page__subheading column column--remaining">
+        Team agreements
+      </h2>
+    </div>
+    <div class="create-action">
+      <section class="action-create action-create--wide">-->
+        <!--icoon not-->
+        <!--<section class="field field--opaque field--no-margin">
+          <input class="comment__text emoji-picker__target gif-picker__target specific-input" placeholder="Add agreement..."
+                 (keydown.enter)="addNewAgreement()"
+                 [(ngModel)]="agreement.Name" style="height: 34px; box-sizing: border-box;" />
+        </section>
+        <nav *ngIf="agreement.Name.length > 0" class="action-create__actions">
+          <button class="action-create__action button button--outline command button--primary" (click)="addNewAgreement()">
+            Add
+          </button>
+        </nav>
+      </section>
+    </div>
+    <div class="actionList">
+      <div *ngFor="let agreement of agreementsList;let i=index;">
+        <div id="card"></div>
+        <article class="action-card dropdown__target action-card--action command">
+          <svg class="icon action-card__icon" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M11 6H14L17.29 2.7A1 1 0 0 1 18.71 2.7L21.29 5.29A1 1 0 0 1 21.29 6.7L19 9H11V11A1 1 0 0 1 10 12A1 1 0 0 1 9 11V8A2 2 0 0 1 11 6M5 11V15L2.71 17.29A1 1 0 0 0 2.71 18.7L5.29 21.29A1 1 0 0 0 6.71 21.29L11 17H15A1 1 0 0 0 16 16V15H17A1 1 0 0 0 18 14V13H19A1 1 0 0 0 20 12V11H13V12A2 2 0 0 1 11 14H9A2 2 0 0 1 7 12V9Z"></path>
+          </svg>
+          <main class="card__content">
+            <p class="action__title">
+              <span>{{agreement.Name}}</span>
+            </p>
+          </main>
+        </article>-->
+        <!--<footer>
+          les action
+        </footer>-->
+      <!--</div>
+      <div *ngIf="agreementsList.length == 0" class="placeholder-block">No agreements yet</div>
+    </div>
+  </main>-->
+  <!--{{action|json}}
+  {{actionsList|json}}-->
+</div>
+
+
+
+
+<!--{{agreement|json}}
+{{agreementsList|json}}-->

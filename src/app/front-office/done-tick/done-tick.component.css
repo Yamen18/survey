@@ -1,0 +1,101 @@
+.done {
+  width: 1.4rem;
+  height: 1.4rem;
+  overflow: visible
+}
+
+.action-card__icon {
+  margin: .5em 0 .5em .5em;
+  align-self: flex-start;
+  -ms-align-self: flex-start;
+  -moz-align-self: flex-start;
+  -webkit-align-self: flex-start;
+  flex-item-align: start;
+  -ms-flex-item-align: start;
+  -moz-flex-item-align: start;
+  -webkit-flex-item-align: start;
+  width: 1.5em;
+  height: 1.5em;
+  color: #607d8b;
+}
+
+
+.done__tick {
+  fill: none;
+  stroke: #97aab3;
+  stroke-width: .8px;
+  transition: stroke 50ms linear;
+  -ms-transition: stroke 50ms linear;
+  -moz-transition: stroke 50ms linear;
+  -webkit-transition: stroke 50ms linear
+}
+
+.done__outline {
+  fill: none;
+  stroke: #97aab3;
+  transition: stroke 50ms linear,opacity 50ms linear;
+  -ms-transition: stroke 50ms linear,opacity 50ms linear;
+  -moz-transition: stroke 50ms linear,opacity 50ms linear;
+  -webkit-transition: stroke 50ms linear,opacity 50ms linear;
+  stroke-width: .8px
+}
+
+.done__glow {
+  fill: none;
+  stroke: #8bc34a;
+  stroke-width: 1.8px;
+  opacity: 0;
+  transition: opacity 200ms linear;
+  -ms-transition: opacity 200ms linear;
+  -moz-transition: opacity 200ms linear;
+  -webkit-transition: opacity 200ms linear
+}
+
+.done--button:not(.command--disabled) {
+  cursor: pointer
+}
+
+  .done--button:not(.command--disabled):hover .done__tick {
+    stroke: #8bc34a
+  }
+
+  .done--button:not(.command--disabled):hover .done__outline {
+    stroke: #8bc34a
+  }
+
+  .done--button:not(.command--disabled):hover .done__glow {
+    opacity: .25
+  }
+
+.done--button.command--disabled {
+  opacity: .5;
+  cursor: inherit
+}
+
+  .done--button.command--disabled .done__outline {
+    stroke: none
+  }
+
+.done--button.command--selected .done__tick, .done--completed .done__tick {
+  stroke: #fff
+}
+
+.done--button.command--selected .done__outline, .done--completed .done__outline {
+  fill: #8bc34a;
+  stroke: #a8d277
+}
+
+.done--button:hover.command--selected .done__tick {
+  stroke: #fff;
+  opacity: .5
+}
+
+.done--button:hover.command--selected .done__outline {
+  fill: #8bc34a;
+  stroke: #a8d277;
+  opacity: 1
+}
+
+.done--button:hover.command--selected .done__glow {
+  opacity: 0
+}

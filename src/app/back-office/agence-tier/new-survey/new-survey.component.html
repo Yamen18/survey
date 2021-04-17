@@ -1,0 +1,75 @@
+<div class="container">
+    <div class='row'>
+        <div class="col-lg-12">
+            <div class="form-heading">
+                <span class="prg">Add new Survey</span>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <!-- Start form units array with first row must and dynamically add more -->
+        <mat-card>
+            <div style="display: flex;">
+                <mat-card-title class="col-md-10">Survey</mat-card-title>
+            </div>
+
+            <mat-divider></mat-divider>
+            <!-- row divider show for every nex row exclude if first row -->
+            <mat-divider></mat-divider>
+            <br />
+            <!-- group name in this case row index -->
+            <div>
+                <!-- unit name input field -->
+                <mat-form-field class="col-md-6" style="padding-right: 5%;">
+                    <input [(ngModel)]="survey.Name" [ngModelOptions]="{standalone: true}" matInput
+                        placeholder="SurveyName" required />
+
+                </mat-form-field>
+
+                <!-- lang title input field -->
+                <mat-form-field class="col-md-6" style="padding-right: 5%;">
+                    <input [(ngModel)]="survey.Description" [ngModelOptions]="{standalone: true}" matInput
+                        placeholder="Description" type="text" required />
+                </mat-form-field>
+
+            </div>
+
+            <div>
+                <mat-form-field class=" col-sm-12">
+                    <mat-label>Company</mat-label>
+                    <mat-select [(ngModel)]="survey.Company_Id" [ngModelOptions]="{standalone: true}">
+                        <mat-option *ngFor="let cmp of companies" [value]="cmp.Id">{{cmp.Name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class=" col-sm-12">
+                    <mat-label>Template</mat-label>
+                    <mat-select [(ngModel)]="survey.Template_Id" [ngModelOptions]="{standalone: true}">
+                        <mat-option *ngFor="let tmp of templates" [value]="tmp.Id">{{tmp.Name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class=" col-sm-12">
+                    <mat-label>Coach</mat-label>
+                    <mat-select [(ngModel)]="survey.Coach_Id" [ngModelOptions]="{standalone: true}">
+                        <mat-option *ngFor="let c of coachs" [value]="c.Id">{{c.Name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class=" col-sm-12">
+                    <input matInput [(ngModel)]="survey.NbreParticipant" [ngModelOptions]="{standalone: true}"
+                        placeholder="Participant number" type="number" required />
+                </mat-form-field>
+            </div>
+        </mat-card>
+    </div>
+    <main class="page__footer">
+        <button (click)="openPaymentDialog()" class="button button--large command command--unselected" style="margin:0 1em">
+            Payment
+        </button>
+
+        <!-- <button (click)="addNewSurvey()" class="button button--large command command--unselected" style="margin:0 1em">
+            Add
+        </button> -->
+    </main>
+</div>
