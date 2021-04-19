@@ -4,9 +4,11 @@ import { AgenceComponent } from './back-office/agence-tier/agence/agence.compone
 import { ListAgenceTemplateComponent } from './back-office/agence-tier/list-agence-template/list-agence-template.component';
 import { ListCoachComponent } from './back-office/agence-tier/list-coach/list-coach.component';
 import { ListCompaniesComponent } from './back-office/agence-tier/list-companies/list-companies.component';
+import { ListParticipantComponent } from './back-office/agence-tier/list-participant/list-participant.component';
 import { ListSurveyComponent } from './back-office/agence-tier/list-survey/list-survey.component';
 import { NewCoachComponent } from './back-office/agence-tier/new-coach/new-coach.component';
 import { NewCompanyComponent } from './back-office/agence-tier/new-company/new-company.component';
+import { NewParticipantComponent } from './back-office/agence-tier/new-participant/new-participant.component';
 import { NewSpecificTemplateComponent } from './back-office/agence-tier/new-specific-template/new-specific-template.component';
 import { NewSurveyComponent } from './back-office/agence-tier/new-survey/new-survey.component';
 import { EditeurComponent } from './back-office/editeur-tier/editeur/editeur.component';
@@ -15,16 +17,17 @@ import { ListTemplateComponent } from './back-office/editeur-tier/list-template/
 import { NewAgenceComponent } from './back-office/editeur-tier/new-agence/new-agence.component';
 import { NewTemplateComponent } from './back-office/editeur-tier/new-template/new-template.component';
 import { LayoutComponent } from './front-office/layout/layout.component';
+import { SignUpComponent } from './front-office/sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'back/login', component: LoginComponent },
   {
-    path: 'agence', 
+    path: 'agence',
     component: AgenceComponent,
     children: [
       {
-        path:'companies',
+        path: 'companies',
         component: ListCompaniesComponent
       },
       {
@@ -35,9 +38,32 @@ const routes: Routes = [
         path: 'companies/edit-company/:id', // child route path
         component: NewCompanyComponent,
       },
-
       {
-        path:'templates',
+        path: 'companies/new-company/participants', // child route path
+        component: ListParticipantComponent, // child route component that the router renders
+      },
+      {
+        path: 'companies/edit-company/:id/participants', // child route path
+        component: ListParticipantComponent,
+      },
+      {
+        path: 'companies/new-company/participants/new-participant', // child route path
+        component: NewParticipantComponent, // child route component that the router renders
+      },
+      {
+        path: 'companies/edit-company/:id/participants/new-participant', // child route path
+        component: NewParticipantComponent, // child route component that the router renders
+      },
+      {
+        path: 'companies/new-company/participants/edit-participant/:id', // child route path
+        component: NewParticipantComponent,
+      },
+      {
+        path: 'companies/edit-company/:id/participants/edit-participant/:idParticipant', // child route path
+        component: NewParticipantComponent,
+      },
+      {
+        path: 'templates',
         component: ListAgenceTemplateComponent
       },
       {
@@ -50,7 +76,7 @@ const routes: Routes = [
       },
 
       {
-        path:'surveys',
+        path: 'surveys',
         component: ListSurveyComponent
       },
       {
@@ -63,7 +89,7 @@ const routes: Routes = [
       },
 
       {
-        path:'coachs',
+        path: 'coachs',
         component: ListCoachComponent
       },
       {
@@ -75,9 +101,7 @@ const routes: Routes = [
         component: NewCoachComponent,
       },
     ]
-
   },
-
   {
     path: 'editeur',
     component: EditeurComponent,
@@ -108,8 +132,7 @@ const routes: Routes = [
       },
     ]
   },
-
-
+  { path: 'front/login', component: SignUpComponent },
   { path: '', component: LayoutComponent }];
 
 

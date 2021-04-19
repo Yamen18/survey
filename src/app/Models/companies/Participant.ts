@@ -8,7 +8,7 @@ export class Participant {
     Adress: string = '';
     Zip: string = '';
     City: string = '';
-
+    GroupId: number;
     constructor() {
         this.Id = Math.floor(Math.random() * 100);
     }

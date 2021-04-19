@@ -16,10 +16,10 @@ export class SharedService {
   sharedCompanies: Company[] = [];
   sharedCoachs: Coach[] = [];
   sharedSurveys:SurveyObj[]=[];
-
+  selectedCompany:Company;
   constructor(private router: Router) {
-    if (localStorage.getItem("company") != undefined && localStorage.getItem("company") != '') {
-      this.sharedCompanies = JSON.parse(localStorage.getItem("company"));
+    if (localStorage.getItem("companies") != undefined && localStorage.getItem("companies") != '') {
+      this.sharedCompanies = JSON.parse(localStorage.getItem("companies"));
     }
     if (localStorage.getItem("coach") != undefined && localStorage.getItem("coach") != '') {
       this.sharedCoachs = JSON.parse(localStorage.getItem("coach"));

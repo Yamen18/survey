@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { InvokeEventService } from 'src/app/Services/invokeEvent.Service';
 import { QrCodeGenerateurDialogComponent } from '../qr-code-generateur-dialog/qr-code-generateur-dialog.component';
 
 @Component({
@@ -9,7 +10,7 @@ import { QrCodeGenerateurDialogComponent } from '../qr-code-generateur-dialog/qr
 })
 export class PaymentDialogComponent implements OnInit {
   mode: string = 'card';
-  constructor(public dialogRef: MatDialogRef<PaymentDialogComponent>, public dialog: MatDialog) { }
+  constructor(public dialogRef: MatDialogRef<PaymentDialogComponent>, public dialog: MatDialog,private invokeEvent:InvokeEventService) { }
 
   ngOnInit() {
   }
@@ -27,9 +28,10 @@ export class PaymentDialogComponent implements OnInit {
   }
 
   closePaymentDialog() {
+    this.invokeEvent.approuvePayment.next("isApprouved");
     this.dialogRef.close();
     this.dialog.open(QrCodeGenerateurDialogComponent, {
       disableClose: false
-    })
+    });
   }
 }

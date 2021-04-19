@@ -1,0 +1,54 @@
+<div class="root body">
+  <div class="container" id="container">
+    <div class="form-container sign-up-container">
+    </div>
+    <div class="form-container sign-in-container">
+      <form>
+        <h1>Sign Up</h1>
+
+        <div *ngIf="!isAnonymous" style="display: flex;">
+          <input type="text" placeholder="First Name" />
+          <input type="text" placeholder="Last Name" />
+        </div>
+
+        <div *ngIf="!isAnonymous" style="display: flex;">
+          <input type="text" placeholder="Birth Date" />
+          <input type="number" placeholder="Mobile" />
+        </div>
+
+        <input *ngIf="!isAnonymous" type="text" placeholder="Address" />
+        
+        <input *ngIf="!isAnonymous" type="email" placeholder="Email" />
+
+        <mat-form-field style="width: 100%;">
+          <mat-label>Group</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let group of groups" [value]="group.Id">
+              {{group.Title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <section>
+          <mat-checkbox class="example-margin"
+              (change)="changeTypeConnection($event)"
+              [(ngModel)]="isAnonymous" 
+              [ngModelOptions]="{standalone: true}" 
+              [(indeterminate)]="indeterminate"
+              [labelPosition]="labelPosition">
+              Anonymous 
+          </mat-checkbox>
+      </section>
+
+        <button (click)="signUp()" >Sign Up</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1>Welcome !</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

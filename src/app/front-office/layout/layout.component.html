@@ -5,19 +5,19 @@
       <mat-nav-list>
 
         <section class="navigation-drawer__header">
-          <p style=" color: #9de8ea;text-align: center;">User Connected : <span>{{userConnected}}</span></p>
+          <p style=" color: #9de8ea;text-align: center;">Connected User : <span>{{userConnected}}</span></p>
         </section>
 
         <section class="navigation-drawer__content scrollable custom-scrollbars">
-          <h3 class="navigation-drawer__heading hidden-phone" style="position: relative;">health check</h3>
-          <p class="navigation-drawer__item command--selected">Demo Health Check</p>
+          <!-- <h3 class="navigation-drawer__heading hidden-phone" style="position: relative;">health check</h3> -->
+          <p class="navigation-drawer__item command--selected">Team Health Check</p>
         </section>
 
         <nav class="step-navigation" #stepps>
-          <a (click)="selectedStep(0,stepps,'Shared')" class="step-navigation__step navigation-drawer__item command command--disabled command--selected step-navigation__step--current">Shared</a>
+          <a (click)="selectedStep(0,stepps,'Form')" class="step-navigation__step navigation-drawer__item command command--disabled command--selected step-navigation__step--current">Form</a>
           <a (click)="selectedStep(1,stepps,'Summary')" class="step-navigation__step navigation-drawer__item command command--unselected">Summary</a>
           <a (click)="selectedStep(2,stepps,'Review')" class="step-navigation__step navigation-drawer__item command command--unselected">Review</a>
-          <a (click)="selectedStep(3,stepps,'Form')" class="step-navigation__step navigation-drawer__item command command--unselected">Form</a>
+          <a (click)="selectedStep(3,stepps,'Shared')" class="step-navigation__step navigation-drawer__item command command--unselected">Share</a>
         </nav>
 
         <footer style=" position: absolute;bottom: 0px;">
@@ -135,7 +135,7 @@
           <app-main-review></app-main-review>
           <main class="page__footer">
             <button class="button button--large command command--unselected" style="margin:0 1em" (click)="selectedStep(3,stepps,'Summary')">
-              From
+              Share
               <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
                 <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
               </svg>

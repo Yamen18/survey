@@ -126,13 +126,13 @@
               </button>
             </div>
 
-            <button *ngIf="action.Status != 'rejected'" (click)="rejectedPropose(i,sectionAction)" title="Don't accept" class="button button--icon button--facilitator button--dangerous command popover popover__target tether-target tether-element-attached-top tether-target-attached-bottom tether-element-attached-center tether-target-attached-center">
+            <button *ngIf="action.Status != 'rejected'" (click)="rejectedPropose(i,sectionAction)" title="reject" class="button button--icon button--facilitator button--dangerous command popover popover__target tether-target tether-element-attached-top tether-target-attached-bottom tether-element-attached-center tether-target-attached-center">
               <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
                 <path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z">
                 </path>
               </svg>
             </button>
-            <button *ngIf="action.Status != 'rejected'" (click)="acceptProposedAction(i)" title="Accept" class="button button--icon button--facilitator button--primary command popover popover__target tether-target tether-element-attached-top tether-target-attached-bottom tether-element-attached-center tether-target-attached-center">
+            <button *ngIf="action.Status != 'rejected'" (click)="acceptProposedAction(i)" title="approve" class="button button--icon button--facilitator button--primary command popover popover__target tether-target tether-element-attached-top tether-target-attached-bottom tether-element-attached-center tether-target-attached-center">
               <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
                 <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"></path>
               </svg>
@@ -148,14 +148,14 @@
                   <path d="M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z">
                   </path>
                 </svg>
-                <span style="padding: 15px;">Don't accept</span>
+                <span style="padding: 15px;">reject</span>
               </button>
 
               <button mat-menu-item (click)="acceptProposedAction(i)">
                 <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
                   <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"></path>
                 </svg>
-                <span style="padding: 15px;">Accept</span>
+                <span style="padding: 15px;">Approve</span>
               </button>
 
               <button mat-menu-item (click)="deleteProposedAction(i)">

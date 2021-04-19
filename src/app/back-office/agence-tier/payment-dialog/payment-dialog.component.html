@@ -4,7 +4,8 @@
     </div>
     <form class="form">
         <header class="header">
-            <h1 class="h1_Style">Payment of $145.00</h1>
+            <h1 *ngIf="mode=='card'" class="h1_Style">Payment of $145.00</h1>
+            <h1 *ngIf="mode=='shperCoins'" class="h1_Style">Payment of $phere 145.00</h1>
             <div class="card-type" #paymentMode>
                 <a class="card active" (click)="changeModePayment(0,paymentMode,'card')">
                     <span>
@@ -51,7 +52,7 @@
             padding-top: 0px;margin-top: 0px;padding-bottom: 0px;margin-bottom: 0px;">
                 <div class="form-row">
                     <div style="width: 100%;" class="input-group">
-                        <label class="label-payment" for="">Solde Initial</label>
+                        <label class="label-payment" for="">INITIAL BALANCE</label>
                         <input disabled class="input-payment" value="1500" type="text">
                     </div>
                 </div>

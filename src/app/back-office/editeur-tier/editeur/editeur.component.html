@@ -5,7 +5,7 @@
         <mat-nav-list>
   
           <section class="navigation-drawer__header">
-            <p style=" color: #9de8ea;text-align: center;">User Connected : <span>{{userConnected}}</span></p>
+            <p style=" color: #9de8ea;text-align: center;">Connected User : <span>{{userConnected}}</span></p>
           </section>
   
 
@@ -14,7 +14,7 @@
             <a (click)="selectedStep(0,steppsBackOffice)"
             routerLink="./"
              class="step-navigation__step navigation-drawer__item command
-              command--disabled command--selected step-navigation__step--current">Accueil</a>
+              command--disabled command--selected step-navigation__step--current">Dashboard</a>
             <a (click)="selectedStep(1,steppsBackOffice)"
             routerLink="./agencies"
              class="step-navigation__step navigation-drawer__item command command--unselected">Agencies</a>

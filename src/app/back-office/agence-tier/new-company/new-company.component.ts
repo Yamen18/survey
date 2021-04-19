@@ -4,6 +4,8 @@ import { Company } from 'src/app/Models/companies/Company';
 import { SharedService } from 'src/app/Services/shared.service';
 import { Location } from '@angular/common';
 import { Group } from 'src/app/Models/companies/Group';
+import { Participant } from 'src/app/Models/companies/Participant';
+import { InvokeEventService } from 'src/app/Services/invokeEvent.Service';
 
 @Component({
   selector: 'app-new-company',
@@ -12,10 +14,12 @@ import { Group } from 'src/app/Models/companies/Group';
 })
 export class NewCompanyComponent implements OnInit {
   company: Company = new Company();
-  constructor(private _location: Location, private route: ActivatedRoute, private shared: SharedService) { }
+  constructor(private _location: Location, private route: ActivatedRoute, private shared: SharedService
+    ,private invokeEventService: InvokeEventService) { }
 
   ngOnInit() {
     this.addNewGroup();
+    this.InitialParticipant();
     this.route.paramMap.subscribe(
       params => {
         let selectedId = Number(params.get('id'));
@@ -29,6 +33,13 @@ export class NewCompanyComponent implements OnInit {
   addNewGroup() {
     let group: Group = new Group();
     this.company.Groups.push(group);
+  }
+
+  InitialParticipant() {
+    // let part: Participant = new Participant();
+    // part.FirstName = "yamen";
+    // part.LastName = "jeribi";
+    // this.company.Participants.push(part);
   }
 
   deleteGroup(index: number) {
@@ -47,4 +58,8 @@ export class NewCompanyComponent implements OnInit {
     localStorage.setItem('companies', JSON.stringify(this.shared.sharedCompanies));
   }
 
+  sendParamets() {
+   this.shared.selectedCompany = this.company;
+   // this.invokeEventService.invokeSendCompany.next(this.company);
+  }
 }

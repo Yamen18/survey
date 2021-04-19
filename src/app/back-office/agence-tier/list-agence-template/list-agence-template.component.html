@@ -35,7 +35,7 @@
     <div class='row'>
         <div class="col-lg-12">
           <div class="form-heading">
-            <span class="prg">Agency Tempalte</span>
+            <span class="prg">Agency Template</span>
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element;let i =index;">
               <span [routerLink]="['./edit-template', element.Id]"><i class="material-icons">edit</i></span>
-              <span (click)="deleteCompany(i)"><i class="material-icons">close</i></span>
+              <span (click)="deleteTemplate(i)"><i class="material-icons">close</i></span>
             </td>
           </ng-container>
       
@@ -69,7 +69,7 @@
         <button class="button button--large command command--unselected"
         routerLink="./new-template"
          style="margin:0 1em">
-          Add New Template
+           Add New Template
         </button>
   
       </main>

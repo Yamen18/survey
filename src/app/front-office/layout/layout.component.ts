@@ -20,7 +20,7 @@ export class LayoutComponent implements OnInit {
   listOfComme: Commentary[] = [];
   agreementsList: Agreement[];
   type: string = '';
-  stepName: string = 'Shared';
+  stepName: string = 'Form';
   constructor(private invokeEventService: InvokeEventService, private sharedservice: SharedService) {
     this.invokeEventService.invokeChangeRatedNumber.subscribe(data => {
       if (data == 'changed') {

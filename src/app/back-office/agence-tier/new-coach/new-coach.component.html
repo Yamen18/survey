@@ -27,12 +27,16 @@
             <mat-form-field class=" col-sm-12">
               <input matInput [(ngModel)]="coach.Mobile" [ngModelOptions]="{standalone: true}" placeholder="Mobile" required />
             </mat-form-field>
+
+            <mat-form-field class=" col-sm-12">
+              <input matInput [(ngModel)]="coach.Password" [ngModelOptions]="{standalone: true}" placeholder="Password" required />
+            </mat-form-field>
           </div>
   
           <div class="col-lg-6">
   
             <mat-form-field class=" col-sm-12">
-              <input matInput [(ngModel)]="coach.Adress" [ngModelOptions]="{standalone: true}" placeholder="Adress" required />
+              <input matInput [(ngModel)]="coach.Adress" [ngModelOptions]="{standalone: true}" placeholder="Address" required />
             </mat-form-field>
   
             <mat-form-field class=" col-sm-12">
@@ -57,7 +61,7 @@
   
       <main class="page__footer">
         <button class="button button--large command command--unselected" style="margin:0 1em" (click)="addNewCoach()">
-          Add Coach
+          Save
         </button>
   
       </main>

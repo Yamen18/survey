@@ -8,6 +8,8 @@ import { Coach } from 'src/app/Models/companies/Coach';
 import { Template } from 'src/app/Models/template/Tempate';
 import { MatDialog } from '@angular/material';
 import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component';
+import { InvokeEventService } from 'src/app/Services/invokeEvent.Service';
+import { QrCodeGenerateurDialogComponent } from '../qr-code-generateur-dialog/qr-code-generateur-dialog.component';
 
 @Component({
   selector: 'app-new-survey',
@@ -20,8 +22,15 @@ export class NewSurveyComponent implements OnInit {
   companies: Company[] = [];
   templates: Template[] = [];
   coachs: Coach[] = [];
-
-  constructor(private _location: Location, private route: ActivatedRoute, private shared: SharedService, public dialog: MatDialog) { }
+  indeterminate = false;
+  labelPosition: 'before' | 'after' = 'after';
+  
+  constructor(private _location: Location, private route: ActivatedRoute, 
+    private shared: SharedService, public dialog: MatDialog,private invokeEvent:InvokeEventService) {
+      this.invokeEvent.approuvePayment.subscribe(data=>{
+        this.survey.IsPayed = true;
+      })
+     }
 
   ngOnInit() {
     this.companies = this.shared.sharedCompanies;
@@ -52,6 +61,12 @@ export class NewSurveyComponent implements OnInit {
   openPaymentDialog() {
     this.dialog.open(PaymentDialogComponent, {
       disableClose: true
+    });
+  }
+
+  openQrCodeDialog(){
+    this.dialog.open(QrCodeGenerateurDialogComponent, {
+      disableClose: false
     });
   }
 

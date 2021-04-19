@@ -19,8 +19,11 @@ export class ListAgenceTemplateComponent implements OnInit {
   constructor(private shared: SharedService) { }
 
   ngOnInit() {
-    console.log(this.sharedTemplate)
-    console.log(this.specificTemplate)
+  }
+
+  deleteTemplate(index:number) {
+    this.shared.specificTemplate.splice(index,1);
+    this.specificTemplate = new MatTableDataSource<Template>(this.shared.specificTemplate);
 
   }
 

@@ -21,7 +21,8 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatSelectModule,
-  MatDialogModule
+  MatDialogModule,
+  MatCheckboxModule
 } from '@angular/material';
 import { ChartsModule, ThemeService } from 'ng2-charts';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
@@ -58,6 +59,8 @@ import { PaymentDialogComponent } from './back-office/agence-tier/payment-dialog
 import { QrCodeGenerateurDialogComponent } from './back-office/agence-tier/qr-code-generateur-dialog/qr-code-generateur-dialog.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { ListParticipantComponent } from './back-office/agence-tier/list-participant/list-participant.component';
+import { NewParticipantComponent } from './back-office/agence-tier/new-participant/new-participant.component';
+import { SignUpComponent } from './front-office/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +91,9 @@ import { ListParticipantComponent } from './back-office/agence-tier/list-partici
     NewSurveyComponent,
     PaymentDialogComponent,
     QrCodeGenerateurDialogComponent,
-    ListParticipantComponent
+    ListParticipantComponent,
+    NewParticipantComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -112,7 +117,7 @@ import { ListParticipantComponent } from './back-office/agence-tier/list-partici
     MatNativeDateModule,
     ChartsModule, MatCardModule, MatSortModule,
     MatTableModule, MatPaginatorModule, MatSelectModule, MatDialogModule,
-    NgxQRCodeModule
+    NgxQRCodeModule,MatCheckboxModule
   ],
   providers: [MatDatepickerModule, InvokeEventService, ThemeService, SharedService],
   entryComponents: [PaymentDialogComponent,QrCodeGenerateurDialogComponent],

@@ -1,14 +1,15 @@
 <div style="text-align:center">
-    <h3>
-        qr code generated and the session will be launched
-    </h3>
-  </div>
-   
-  <div>
-    <ngx-qrcode 
-    [elementType]="elementType" 
-    [value]="value"
-    cssClass="coolQRCode"
-    errorCorrectionLevel="L">
+  <h3>
+    QR Code generated
+  </h3>
+</div>
+
+<div>
+  <ngx-qrcode [elementType]="elementType" [value]="value" cssClass="coolQRCode" errorCorrectionLevel="L">
   </ngx-qrcode>
-  </div>
+
+  <button  routerLink="front/login" (click)="closePopUp()" class="button button--large command command--unselected"
+    style="margin:0 1em">
+    start session
+  </button>
+</div>

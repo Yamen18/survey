@@ -5,27 +5,29 @@
       <mat-nav-list>
 
         <section class="navigation-drawer__header">
-          <p style=" color: #9de8ea;text-align: center;">User Connected : <span>{{userConnected}}</span></p>
+          <p style=" color: #9de8ea;text-align: center;">Connected User : <span>{{userConnected}}</span></p>
         </section>
 
 
 
         <nav class="step-navigation" #steppsBackOffice>
           <a (click)="selectedStep(0,steppsBackOffice)" routerLink="./" class="step-navigation__step navigation-drawer__item command
-              command--disabled command--selected step-navigation__step--current">Accueil</a>
+              command--disabled command--selected step-navigation__step--current">Dashboard</a>
           <a (click)="selectedStep(1,steppsBackOffice)" routerLink="./companies"
             class="step-navigation__step navigation-drawer__item command command--unselected">Companies</a>
 
           <a (click)="selectedStep(2,steppsBackOffice)" routerLink="./templates"
-            class="step-navigation__step navigation-drawer__item command command--unselected">Templates</a>
+            class="step-navigation__step navigation-drawer__item command command--unselected">Library</a>
 
-          <a (click)="selectedStep(3,steppsBackOffice)" routerLink="./surveys"
+            <a (click)="selectedStep(3,steppsBackOffice)" routerLink="./coachs"
+            class="step-navigation__step navigation-drawer__item command command--unselected">Coaches</a>
+
+          <a (click)="selectedStep(4,steppsBackOffice)" routerLink="./surveys"
             class="step-navigation__step navigation-drawer__item command command--unselected">Session</a>
-          <a (click)="selectedStep(4,steppsBackOffice)" routerLink="./coachs"
-            class="step-navigation__step navigation-drawer__item command command--unselected">Coachs</a>
+
 
         </nav>
-        
+
         <footer style=" position: absolute;bottom: 0px;">
           <button class="button_logout" (click)="logOut()">Logout</button>
         </footer>
