@@ -61,6 +61,9 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { ListParticipantComponent } from './back-office/agence-tier/list-participant/list-participant.component';
 import { NewParticipantComponent } from './back-office/agence-tier/new-participant/new-participant.component';
 import { SignUpComponent } from './front-office/sign-up/sign-up.component';
+import { NewSubSessionComponent } from './back-office/agence-tier/new-sub-session/new-sub-session.component';
+import { ListSubSessionComponent } from './back-office/agence-tier/list-sub-session/list-sub-session.component';
+import { PaymentComponent } from './back-office/agence-tier/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +96,10 @@ import { SignUpComponent } from './front-office/sign-up/sign-up.component';
     QrCodeGenerateurDialogComponent,
     ListParticipantComponent,
     NewParticipantComponent,
-    SignUpComponent
+    SignUpComponent,
+    NewSubSessionComponent,
+    ListSubSessionComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

@@ -9,15 +9,16 @@ import { SharedService } from 'src/app/Services/shared.service';
 export class AgenceComponent implements OnInit {
   userConnected: string = 'agence';
 
-  constructor(private sharedservice:SharedService) { }
+  constructor(private sharedservice: SharedService) { }
 
   ngOnInit() {
   }
-  selectedStep(stepId:number,element){
-    this.sharedservice.selectedStep(stepId,element);
+
+  selectedStep(stepId: number, element) {
+    this.sharedservice.selectedStep(stepId, element);
   }
 
-  logOut(){
+  logOut() {
     this.sharedservice.logOut();
   }
 }

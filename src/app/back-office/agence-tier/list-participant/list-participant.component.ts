@@ -14,7 +14,7 @@ export class ListParticipantComponent implements OnInit {
   company: Company = new Company();
   participants: Participant[] = [];
   displayedColumns: string[] = ['FirstName', 'Email', 'GroupId' ,'action'];
-  dataSource = new MatTableDataSource<Participant>(this.shared.selectedCompany.Participants);
+  dataSource = new MatTableDataSource<Participant>(this.shared.selectedSubSession.Participants);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   constructor(private _location: Location, private shared: SharedService) {
   }
@@ -27,8 +27,8 @@ export class ListParticipantComponent implements OnInit {
   }
 
   deleteParticipant(indexTemplate) {
-    this.shared.selectedCompany.Participants.splice(indexTemplate, 1);
-    this.dataSource = new MatTableDataSource<Participant>(this.shared.selectedCompany.Participants);
+    this.shared.selectedSubSession.Participants.splice(indexTemplate, 1);
+    this.dataSource = new MatTableDataSource<Participant>(this.shared.selectedSubSession.Participants);
   }
 
   backToCompanyFormulaire() {

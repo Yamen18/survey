@@ -14,8 +14,7 @@ export class Company {
   Country: string = '';
   TaxIdentification: string = '';
   TradeRegister: string = '';
-  Groups: Group[] = [];
-  Participants: Participant[] = [];
+
   
   constructor() {
     this.Id = Math.floor(Math.random() * 100);

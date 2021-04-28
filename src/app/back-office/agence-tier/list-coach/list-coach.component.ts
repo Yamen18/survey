@@ -26,6 +26,5 @@ export class ListCoachComponent implements OnInit {
     this.shared.sharedCoachs.splice(indexTemplate,1);
     this.dataSource = new MatTableDataSource<Coach>(this.shared.sharedCoachs);
     localStorage.setItem('coach', JSON.stringify(this.shared.sharedCoachs));
-
   }
 }

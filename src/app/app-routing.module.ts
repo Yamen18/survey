@@ -5,12 +5,15 @@ import { ListAgenceTemplateComponent } from './back-office/agence-tier/list-agen
 import { ListCoachComponent } from './back-office/agence-tier/list-coach/list-coach.component';
 import { ListCompaniesComponent } from './back-office/agence-tier/list-companies/list-companies.component';
 import { ListParticipantComponent } from './back-office/agence-tier/list-participant/list-participant.component';
+import { ListSubSessionComponent } from './back-office/agence-tier/list-sub-session/list-sub-session.component';
 import { ListSurveyComponent } from './back-office/agence-tier/list-survey/list-survey.component';
 import { NewCoachComponent } from './back-office/agence-tier/new-coach/new-coach.component';
 import { NewCompanyComponent } from './back-office/agence-tier/new-company/new-company.component';
 import { NewParticipantComponent } from './back-office/agence-tier/new-participant/new-participant.component';
 import { NewSpecificTemplateComponent } from './back-office/agence-tier/new-specific-template/new-specific-template.component';
+import { NewSubSessionComponent } from './back-office/agence-tier/new-sub-session/new-sub-session.component';
 import { NewSurveyComponent } from './back-office/agence-tier/new-survey/new-survey.component';
+import { PaymentComponent } from './back-office/agence-tier/payment/payment.component';
 import { EditeurComponent } from './back-office/editeur-tier/editeur/editeur.component';
 import { ListAgenceComponent } from './back-office/editeur-tier/list-agence/list-agence.component';
 import { ListTemplateComponent } from './back-office/editeur-tier/list-template/list-template.component';
@@ -31,75 +34,117 @@ const routes: Routes = [
         component: ListCompaniesComponent
       },
       {
-        path: 'companies/new-company', // child route path
+        path: 'companies/new-company',
         component: NewCompanyComponent,
       },
       {
-        path: 'companies/edit-company/:id', // child route path
+        path: 'companies/edit-company/:id',
         component: NewCompanyComponent,
-      },
-      {
-        path: 'companies/new-company/participants', // child route path
-        component: ListParticipantComponent, // child route component that the router renders
-      },
-      {
-        path: 'companies/edit-company/:id/participants', // child route path
-        component: ListParticipantComponent,
-      },
-      {
-        path: 'companies/new-company/participants/new-participant', // child route path
-        component: NewParticipantComponent, // child route component that the router renders
-      },
-      {
-        path: 'companies/edit-company/:id/participants/new-participant', // child route path
-        component: NewParticipantComponent, // child route component that the router renders
-      },
-      {
-        path: 'companies/new-company/participants/edit-participant/:id', // child route path
-        component: NewParticipantComponent,
-      },
-      {
-        path: 'companies/edit-company/:id/participants/edit-participant/:idParticipant', // child route path
-        component: NewParticipantComponent,
       },
       {
         path: 'templates',
         component: ListAgenceTemplateComponent
       },
       {
-        path: 'templates/new-template', // child route path
+        path: 'templates/new-template',
         component: NewSpecificTemplateComponent,
       },
       {
-        path: 'templates/edit-template/:id', // child route path
+        path: 'templates/edit-template/:id',
         component: NewSpecificTemplateComponent,
       },
-
-      {
-        path: 'surveys',
-        component: ListSurveyComponent
-      },
-      {
-        path: 'surveys/new-survey', // child route path
-        component: NewSurveyComponent,
-      },
-      {
-        path: 'surveys/edit-survey/:id', // child route path
-        component: NewSurveyComponent,
-      },
-
       {
         path: 'coachs',
         component: ListCoachComponent
       },
       {
-        path: 'coachs/new-coach', // child route path
+        path: 'coachs/new-coach',
         component: NewCoachComponent,
       },
       {
-        path: 'coachs/edit-coach/:id', // child route path
+        path: 'coachs/edit-coach/:id',
         component: NewCoachComponent,
       },
+      {
+        path: 'surveys',
+        component: ListSurveyComponent
+      },
+      //mode new survey
+      {
+        path: 'surveys/new-survey',
+        component: NewSurveyComponent,
+      },
+      {
+        path: 'surveys/new-survey/new-sub-session',
+        component: NewSubSessionComponent,
+      },
+      {
+        path: 'surveys/new-survey/edit-sub-session/:idSubsession',
+        component: NewSubSessionComponent,
+      },
+      {
+        path: 'surveys/new-survey/new-sub-session/participants',
+        component: ListParticipantComponent,
+      },
+      {
+        path: 'surveys/new-survey/edit-sub-session/:idSubsession/participants',
+        component: ListParticipantComponent,
+      },
+      {
+        path: 'surveys/new-survey/new-sub-session/participants/new-participant',
+        component: NewParticipantComponent,
+      },
+      {
+        path: 'surveys/new-survey/new-sub-session/participants/edit-participant/:idParticipant',
+        component: NewParticipantComponent,
+      },
+      {
+        path: 'surveys/new-survey/edit-sub-session/:idSubsession/participants/new-participant',
+        component: NewParticipantComponent,
+      },
+      //mode edit survey
+      {
+        path: 'surveys/edit-survey/:id',
+        component: NewSurveyComponent,
+      },
+      //new sub session
+      {
+        path: 'surveys/edit-survey/:id/new-sub-session',
+        component: NewSubSessionComponent,
+      },
+      //edit sub session
+      {
+        path: 'surveys/edit-survey/:id/edit-sub-session/:idSubsession',
+        component: NewSubSessionComponent,
+      },
+      //list des participant mode new sub session
+      {
+        path: 'surveys/edit-survey/:id/new-sub-session/participants',
+        component: ListParticipantComponent,
+      },
+      //list des participant mode edit sub session
+      {
+        path: 'surveys/edit-survey/:id/edit-sub-session/:idSubsession/participants',
+        component: ListParticipantComponent,
+      },
+      // new participant mode new sub session
+      {
+        path: 'surveys/edit-survey/:id/new-sub-session/participants/new-participant',
+        component: NewParticipantComponent,
+      },
+      // edit participant mode edit sub session
+      {
+        path: 'surveys/edit-survey/:id/edit-sub-session/:idSubsession/participants/edit-participant/:idParticipant',
+        component: NewParticipantComponent,
+      },
+      {
+        path: 'surveys/edit-survey/:id/edit-sub-session/:idSubsession/participants/new-participant',
+        component: NewParticipantComponent,
+      },
+      {
+        path: 'payment',
+        component: PaymentComponent
+      }
     ]
   },
   {

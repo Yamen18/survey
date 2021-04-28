@@ -37,18 +37,9 @@
               required />
           </mat-form-field>
 
-          <!-- <mat-form-field class=" col-sm-12">
-              <input matInput [(ngModel)]="company.NbreParticipant" [ngModelOptions]="{standalone: true}"
-               placeholder="Participant number" type="number"
-                required />
-            </mat-form-field> -->
-
-
         </div>
 
         <div class="col-lg-6">
-
-
 
           <mat-form-field class=" col-sm-12">
             <input matInput [(ngModel)]="company.Mobile" [ngModelOptions]="{standalone: true}" placeholder="Mobile"
@@ -75,60 +66,7 @@
 
         </div>
 
-        <div class="col-lg-12">
-          <mat-card>
-            <div style="display: flex;">
-              <mat-card-title class="col-md-10">Groups</mat-card-title>
-            </div>
-
-            <mat-divider></mat-divider>
-
-            <!-- loop throught units -->
-            <div *ngFor="let group of company.Groups;let i=index;">
-              <!-- row divider show for every nex row exclude if first row -->
-              <mat-divider></mat-divider>
-              <br />
-
-              <!-- group name in this case row index -->
-              <div>
-
-                <!-- lang title input field -->
-                <mat-form-field class="col-md-4">
-                  <input [(ngModel)]="group.Title" [ngModelOptions]="{standalone: true}" matInput placeholder="Name"
-                    type="text" required />
-                </mat-form-field>
-
-                <!-- unit price input field -->
-                <mat-form-field class="col-md-7">
-                  <input [(ngModel)]="group.Description" [ngModelOptions]="{standalone: true}" matInput
-                    placeholder="Description" type="text" required />
-                </mat-form-field>
-
-                <!-- <button class="col-md-2" type="button" mat-raised-button>
-                  <mat-icon>supervised_user_circle</mat-icon>
-                  Add Participants
-                </button> -->
-
-                <button *ngIf="company.Groups.length > 1" class="col-md-1" type="button" mat-raised-button
-                  (click)="deleteGroup(i)">
-                  <mat-icon>remove_circle</mat-icon>
-                  Delete
-                </button>
-              </div>
-
-            </div>
-
-            <!-- New unit button -->
-            <mat-divider></mat-divider>
-            <mat-card-actions>
-              <button type="button" mat-raised-button (click)="addNewGroup()">
-                <mat-icon>add box</mat-icon>
-                Add new Group
-              </button>
-            </mat-card-actions>
-          </mat-card>
-
-        </div>
+ 
 
 
 
@@ -139,10 +77,6 @@
     </div>
 
     <main class="page__footer">
-
-      <button class="button button--large command command--unselected" style="margin:0 1em" routerLink="./participants" (click)="sendParamets()" >
-        Participant Management
-      </button>
 
       <button class="button button--large command command--unselected" style="margin:0 1em" (click)="addNewCompany()">
         Save

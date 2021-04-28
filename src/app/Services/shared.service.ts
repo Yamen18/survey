@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { Agency } from "../Models/Agency";
 import { Coach } from "../Models/companies/Coach";
 import { Company } from "../Models/companies/Company";
+import { SubSession } from "../Models/template/sub-session";
 import { SurveyObj } from "../Models/template/SurveyObj";
 import { Template } from "../Models/template/Tempate";
 import { VMoney } from "../Models/VMoney";
@@ -15,8 +16,10 @@ export class SharedService {
   sharedAgencies: Agency[] = [];
   sharedCompanies: Company[] = [];
   sharedCoachs: Coach[] = [];
-  sharedSurveys:SurveyObj[]=[];
-  selectedCompany:Company;
+  sharedSurveys: SurveyObj[] = [];
+  selectedCompany: Company;
+  selectedSession: SurveyObj;
+  selectedSubSession:SubSession;
   constructor(private router: Router) {
     if (localStorage.getItem("companies") != undefined && localStorage.getItem("companies") != '') {
       this.sharedCompanies = JSON.parse(localStorage.getItem("companies"));
@@ -58,7 +61,7 @@ export class SharedService {
     }
   }
 
-  logOut(){
+  logOut() {
     this.router.navigate(['back/login']);
   }
 }

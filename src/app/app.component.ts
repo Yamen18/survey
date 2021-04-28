@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'teamretro';
+  title = 'TeamoSphere';
 
   constructor(private router: Router) {    
-    //this.router.navigate(['back/login']);
+    this.router.navigate(['/agence']);
    }
 
 

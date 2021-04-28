@@ -22,20 +22,22 @@ export class NewSurveyComponent implements OnInit {
   companies: Company[] = [];
   templates: Template[] = [];
   coachs: Coach[] = [];
+
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
-  
-  constructor(private _location: Location, private route: ActivatedRoute, 
-    private shared: SharedService, public dialog: MatDialog,private invokeEvent:InvokeEventService) {
-      this.invokeEvent.approuvePayment.subscribe(data=>{
-        this.survey.IsPayed = true;
-      })
-     }
+
+  constructor(private _location: Location, private route: ActivatedRoute,
+    private shared: SharedService, public dialog: MatDialog, private invokeEvent: InvokeEventService) {
+    // this.invokeEvent.approuvePayment.subscribe(data => {
+    //   this.survey.IsPayed = true;
+    // })
+  }
 
   ngOnInit() {
     this.companies = this.shared.sharedCompanies;
     this.coachs = this.shared.sharedCoachs;
     this.templates = this.shared.sharedtemplate.concat(this.shared.specificTemplate);
+    this.selectedSession();
     this.route.paramMap.subscribe(
       params => {
         let selectedId = Number(params.get('id'));
@@ -64,10 +66,17 @@ export class NewSurveyComponent implements OnInit {
     });
   }
 
-  openQrCodeDialog(){
+  openQrCodeDialog() {
     this.dialog.open(QrCodeGenerateurDialogComponent, {
       disableClose: false
     });
   }
 
+  selectedSession() {
+    this.shared.selectedSession = this.survey;
+  }
+
+  back() {
+    this._location.back();
+  }
 }

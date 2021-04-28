@@ -1,3 +1,5 @@
+import { SubSession } from "./sub-session";
+
 export class SurveyObj {
 
     Id: number;
@@ -7,7 +9,9 @@ export class SurveyObj {
     Template_Id: number;
     Coach_Id: number;
     NbreParticipant: number;
-    IsPayed: Boolean = false;
+    IsMultiSession: boolean = false;
+    Sub_session: SubSession[] = [];
+
     constructor() {
         this.Id = Math.floor(Math.random() * 100);
     }
