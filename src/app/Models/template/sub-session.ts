@@ -6,7 +6,7 @@ export class SubSession {
     Id: number;
     Name: string='';
     Template_Id: number;
-    Coach_Id: number;
+    Coach_Ids: number[]=[];
     NbreParticipant: number;
     Groups: Group[] = [];
     Participants: Participant[] = [];

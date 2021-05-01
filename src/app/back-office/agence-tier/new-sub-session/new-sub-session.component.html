@@ -2,14 +2,14 @@
     <div class='row'>
         <div class="col-lg-12">
             <div class="form-heading">
-                <span class="prg">Sub-Session Information</span>
+                <span class="prg">Session Information</span>
             </div>
         </div>
     </div>
     <div class='row'>
         <mat-card>
             <div style="display: flex;">
-                <mat-card-title class="col-md-10">Sub-Session</mat-card-title>
+                <mat-card-title class="col-md-10">Session</mat-card-title>
             </div>
 
             <mat-divider></mat-divider>
@@ -32,59 +32,19 @@
                 </mat-form-field>
 
                 <mat-form-field class=" col-sm-12">
-                    <mat-label>Coach</mat-label>
-                    <mat-select [(ngModel)]="sub_session.Coach_Id" [ngModelOptions]="{standalone: true}">
-                        <mat-option *ngFor="let c of coachs" [value]="c.Id">{{c.Name}}</mat-option>
+                    <mat-label>Coachs</mat-label>
+                    <mat-select  [(ngModel)]="sub_session.Coach_Ids" [ngModelOptions]="{standalone: true}"  multiple>
+                      <mat-option *ngFor="let c of coachs" [value]="c.Id">{{c.Name}}</mat-option>
                     </mat-select>
-                </mat-form-field>
+                  </mat-form-field>
 
                 <mat-form-field class=" col-sm-12">
                     <input matInput [(ngModel)]="sub_session.NbreParticipant" [ngModelOptions]="{standalone: true}"
                         placeholder="Participant number" type="number" required />
                 </mat-form-field>
 
-                    <div class="col-lg-12">
-                        <mat-card>
-                            <div style="display: flex;">
-                                <mat-card-title class="col-md-10">Groups</mat-card-title>
-                            </div>
-                    
-                            <mat-divider></mat-divider>
-                    
-                            <div *ngFor="let group of sub_session.Groups;let i=index;">
-                                <mat-divider></mat-divider>
-                                <br />
-                    
-                                <div>
-                                    <mat-form-field class="col-md-4">
-                                        <input [(ngModel)]="group.Title" [ngModelOptions]="{standalone: true}" matInput placeholder="Name"
-                                            type="text" required />
-                                    </mat-form-field>
-                    
-                                    <mat-form-field class="col-md-7">
-                                        <input [(ngModel)]="group.Description" [ngModelOptions]="{standalone: true}" matInput
-                                            placeholder="Description" type="text" required />
-                                    </mat-form-field>
-                    
-                                    <button *ngIf="sub_session.Groups.length > 1" class="col-md-1" type="button" mat-raised-button
-                                        (click)="deleteGroup(i)">
-                                        <mat-icon>remove_circle</mat-icon>
-                                        Delete
-                                    </button>
-                                </div>
-                    
-                            </div>
-                    
-                            <mat-divider></mat-divider>
-                            <mat-card-actions>
-                                <button type="button" mat-raised-button (click)="addNewGroup()">
-                                    <mat-icon>add box</mat-icon>
-                                    Add new Group
-                                </button>
-                            </mat-card-actions>
-                        </mat-card>
-                    
-                    </div>
+                <app-add-group [session]="sub_session" ></app-add-group>
+
 
             </div>
         </mat-card>

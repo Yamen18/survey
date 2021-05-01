@@ -1,0 +1,42 @@
+<div class="col-lg-12">
+    <mat-card>
+        <div style="display: flex;">
+            <mat-card-title class="col-md-10">Groups</mat-card-title>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div *ngFor="let group of session.Groups;let i=index;">
+            <mat-divider></mat-divider>
+            <br />
+
+            <div>
+                <mat-form-field class="col-md-4">
+                    <input [(ngModel)]="group.Title" [ngModelOptions]="{standalone: true}" matInput placeholder="Name"
+                        type="text" required />
+                </mat-form-field>
+
+                <mat-form-field class="col-md-7">
+                    <input [(ngModel)]="group.Description" [ngModelOptions]="{standalone: true}" matInput
+                        placeholder="Description" type="text" required />
+                </mat-form-field>
+
+                <button *ngIf="session.Groups.length > 1" class="col-md-1" type="button" mat-raised-button
+                    (click)="deleteGroup(i)">
+                    <mat-icon>remove_circle</mat-icon>
+                    Delete
+                </button>
+            </div>
+
+        </div>
+
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <button type="button" mat-raised-button (click)="addNewGroup()">
+                <mat-icon>add box</mat-icon>
+                Add new Group
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+</div>

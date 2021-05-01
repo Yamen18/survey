@@ -7,6 +7,6 @@ export class InvokeEventService {
   invokeChangeRatedNumber: Subject<any> = new Subject();
   invokeSendCompany:Subject<any> = new Subject();
   approuvePayment:Subject<any> = new Subject();
-
+  isFromMultiSession:Subject<boolean> = new Subject();
   
 }

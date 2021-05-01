@@ -6,23 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-  mode: string = 'card';
-
+  amount: number = 0;
   constructor() { }
 
   ngOnInit() {
   }
 
-  changeModePayment(idStep: number, element, paymentMode: string) {
-    this.mode = paymentMode;
-    for (var i = 0; i < element.getElementsByTagName('a').length; i++) {
-      let stepElement = element.getElementsByTagName('a')[i];
-      if (i == idStep) {
-        stepElement.classList.add("active");
-      } else {
-        stepElement.classList.remove("active");
-      }
+  changeCurrency(value) {
+    if (value=='euro') {
+      this.amount = 150 * 2.2;
+    } else {
+      this.amount = 150 * 5.2;
     }
   }
-
 }

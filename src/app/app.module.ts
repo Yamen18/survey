@@ -64,6 +64,7 @@ import { SignUpComponent } from './front-office/sign-up/sign-up.component';
 import { NewSubSessionComponent } from './back-office/agence-tier/new-sub-session/new-sub-session.component';
 import { ListSubSessionComponent } from './back-office/agence-tier/list-sub-session/list-sub-session.component';
 import { PaymentComponent } from './back-office/agence-tier/payment/payment.component';
+import { AddGroupComponent } from './back-office/agence-tier/add-group/add-group.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { PaymentComponent } from './back-office/agence-tier/payment/payment.comp
     SignUpComponent,
     NewSubSessionComponent,
     ListSubSessionComponent,
-    PaymentComponent
+    PaymentComponent,
+    AddGroupComponent
   ],
   imports: [
     BrowserModule,

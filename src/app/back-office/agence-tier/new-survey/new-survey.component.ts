@@ -28,9 +28,10 @@ export class NewSurveyComponent implements OnInit {
 
   constructor(private _location: Location, private route: ActivatedRoute,
     private shared: SharedService, public dialog: MatDialog, private invokeEvent: InvokeEventService) {
-    // this.invokeEvent.approuvePayment.subscribe(data => {
-    //   this.survey.IsPayed = true;
-    // })
+    this.invokeEvent.isFromMultiSession.subscribe(data => {
+      console.log(data);
+      this.survey.IsMultiSession = data;
+    });
   }
 
   ngOnInit() {
@@ -78,5 +79,9 @@ export class NewSurveyComponent implements OnInit {
 
   back() {
     this._location.back();
+  }
+
+  sendParamets() {
+    this.shared.selectedParticipants = this.survey.Participants;
   }
 }

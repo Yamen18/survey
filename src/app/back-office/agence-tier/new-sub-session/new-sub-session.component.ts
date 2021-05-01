@@ -44,17 +44,10 @@ export class NewSubSessionComponent implements OnInit {
     this.back();
   }
 
-  addNewGroup() {
-    let group: Group = new Group();
-    this.sub_session.Groups.push(group);
-  }
 
-  deleteGroup(index: number) {
-    this.sub_session.Groups.splice(index, 1);
-  }
 
   sendParamets() {
-    this.shared.selectedSubSession = this.sub_session;
+    this.shared.selectedParticipants = this.sub_session.Participants;
   }
 
   back() {

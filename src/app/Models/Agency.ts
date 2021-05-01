@@ -15,6 +15,7 @@ export class Agency {
   Password: string = '';
   SphereCoinsBonus: number;
   SphereCoins: number;
+  TemplatePrice: number;
   Currency: Currency[] = [];
 
   constructor() {

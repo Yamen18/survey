@@ -42,31 +42,23 @@
                 </mat-form-field>
 
                 <mat-form-field *ngIf="!survey.IsMultiSession" class=" col-sm-12">
-                    <mat-label>Coach</mat-label>
-                    <mat-select [(ngModel)]="survey.Coach_Id" [ngModelOptions]="{standalone: true}">
-                        <mat-option *ngFor="let c of coachs" [value]="c.Id">{{c.Name}}</mat-option>
+                    <mat-label>Coachs</mat-label>
+                    <mat-select  [(ngModel)]="survey.Coach_Ids" [ngModelOptions]="{standalone: true}"  multiple>
+                      <mat-option *ngFor="let c of coachs" [value]="c.Id">{{c.Name}}</mat-option>
                     </mat-select>
-                </mat-form-field>
+                  </mat-form-field>
 
                 <mat-form-field *ngIf="!survey.IsMultiSession" class=" col-sm-12">
                     <input matInput [(ngModel)]="survey.NbreParticipant" [ngModelOptions]="{standalone: true}"
                         placeholder="Participant number" type="number" required />
                 </mat-form-field>
 
-                <section class="col-sm-12">
-                    <mat-checkbox class="example-margin"
-                        [(ngModel)]="survey.IsMultiSession" 
-                        [ngModelOptions]="{standalone: true}" 
-                        [(indeterminate)]="indeterminate"
-                        [labelPosition]="labelPosition">
-                        Sub-Session 
-                    </mat-checkbox>
-                </section>
+                <app-add-group *ngIf="!survey.IsMultiSession" [session]="survey"></app-add-group>
 
             </div>
         </mat-card>
 
-        <app-list-sub-session style="width: 100%;" *ngIf="survey.IsMultiSession"  ></app-list-sub-session>
+        <app-list-sub-session style="width: 100%;" *ngIf="survey.IsMultiSession"></app-list-sub-session>
 
     </div>
     <main class="page__footer">
@@ -79,10 +71,15 @@
             Save
         </button>
 
-            <button *ngIf="survey.IsMultiSession"  class="button button--large command command--unselected" style="margin:0 1em"
-             routerLink="./new-sub-session">
-                Add New Session
-            </button>
+        <button *ngIf="survey.IsMultiSession" class="button button--large command command--unselected"
+            style="margin:0 1em" routerLink="./new-sub-session">
+            Add New Session
+        </button>
+
+        <button *ngIf="!survey.IsMultiSession" class="button button--large command command--unselected" style="margin:0 1em"
+            routerLink="./participants" (click)="sendParamets()">
+            Participant Management
+        </button>
 
         <!-- <button class="button button--large command command--unselected" (click)="selectedSession()"
             routerLink="./subSessions" style="margin:0 1em">

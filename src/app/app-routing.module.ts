@@ -87,7 +87,15 @@ const routes: Routes = [
         component: ListParticipantComponent,
       },
       {
+        path: 'surveys/new-survey/participants',
+        component: ListParticipantComponent,
+      },
+      {
         path: 'surveys/new-survey/edit-sub-session/:idSubsession/participants',
+        component: ListParticipantComponent,
+      },
+      {
+        path: 'surveys/new-survey/:idSubsession/participants',
         component: ListParticipantComponent,
       },
       {
@@ -95,11 +103,23 @@ const routes: Routes = [
         component: NewParticipantComponent,
       },
       {
+        path: 'surveys/new-survey/participants/new-participant',
+        component: NewParticipantComponent,
+      },
+      {
         path: 'surveys/new-survey/new-sub-session/participants/edit-participant/:idParticipant',
         component: NewParticipantComponent,
       },
       {
+        path: 'surveys/new-survey/participants/edit-participant/:idParticipant',
+        component: NewParticipantComponent,
+      },
+      {
         path: 'surveys/new-survey/edit-sub-session/:idSubsession/participants/new-participant',
+        component: NewParticipantComponent,
+      },
+      {
+        path: 'surveys/new-survey/participants/new-participant',
         component: NewParticipantComponent,
       },
       //mode edit survey
@@ -122,6 +142,10 @@ const routes: Routes = [
         path: 'surveys/edit-survey/:id/new-sub-session/participants',
         component: ListParticipantComponent,
       },
+      {
+        path: 'surveys/edit-survey/:id/participants',
+        component: ListParticipantComponent,
+      },
       //list des participant mode edit sub session
       {
         path: 'surveys/edit-survey/:id/edit-sub-session/:idSubsession/participants',
@@ -132,9 +156,17 @@ const routes: Routes = [
         path: 'surveys/edit-survey/:id/new-sub-session/participants/new-participant',
         component: NewParticipantComponent,
       },
+      {
+        path: 'surveys/edit-survey/:id/participants/new-participant',
+        component: NewParticipantComponent,
+      },
       // edit participant mode edit sub session
       {
         path: 'surveys/edit-survey/:id/edit-sub-session/:idSubsession/participants/edit-participant/:idParticipant',
+        component: NewParticipantComponent,
+      },
+      {
+        path: 'surveys/edit-survey/:id/participants/edit-participant/:idParticipant',
         component: NewParticipantComponent,
       },
       {

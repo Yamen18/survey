@@ -14,7 +14,7 @@ export class NewParticipantComponent implements OnInit {
   participant: Participant = new Participant();
   groups: Group[] = [];
   constructor(private shared:SharedService,private _location: Location, private route: ActivatedRoute) {
-    this.groups =  this.shared.selectedSubSession.Groups;
+   // this.groups =  this.shared.selectedSubSession.Groups;
    }
 
   ngOnInit() {
