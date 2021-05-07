@@ -9,7 +9,7 @@ import { Commentary } from '../../Models/Commentary';
 })
 export class MainSurveyComponent implements OnInit {
   @Input() survey: Survay;
-
+  @Input() userConnected: string;
   constructor() { }
 
   ngOnInit() {

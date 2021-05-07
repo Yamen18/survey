@@ -14,10 +14,14 @@
         </section>
 
         <nav class="step-navigation" #stepps>
-          <a (click)="selectedStep(0,stepps,'Form')" class="step-navigation__step navigation-drawer__item command command--disabled command--selected step-navigation__step--current">Form</a>
-          <a (click)="selectedStep(1,stepps,'Summary')" class="step-navigation__step navigation-drawer__item command command--unselected">Summary</a>
-          <a (click)="selectedStep(2,stepps,'Review')" class="step-navigation__step navigation-drawer__item command command--unselected">Review</a>
-          <a (click)="selectedStep(3,stepps,'Shared')" class="step-navigation__step navigation-drawer__item command command--unselected">Share</a>
+          <a (click)="selectedStep(0,stepps,'Form')"
+            class="step-navigation__step navigation-drawer__item command command--disabled command--selected step-navigation__step--current">Form</a>
+          <a (click)="selectedStep(1,stepps,'Summary')"
+            class="step-navigation__step navigation-drawer__item command command--unselected">Summary</a>
+          <a (click)="selectedStep(2,stepps,'Review')"
+            class="step-navigation__step navigation-drawer__item command command--unselected">Review</a>
+          <a (click)="selectedStep(3,stepps,'Shared')"
+            class="step-navigation__step navigation-drawer__item command command--unselected">Share</a>
         </nav>
 
         <footer style=" position: absolute;bottom: 0px;">
@@ -25,18 +29,14 @@
         </footer>
       </mat-nav-list>
     </mat-sidenav>
-    <!--<mat-sidenav #sidenavRight class="example-sidenav" position="end" opened="true">
-      <mat-nav-list>
-        test
-      </mat-nav-list>
-    </mat-sidenav>-->
 
     <div class="example-sidenav-content">
-      <div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="header" style="display:flex;background-color: #005c71;">
+      <div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="header"
+        style="display:flex;background-color: #005c71;">
         <div class="arrow-steps clearfix">
-          <div class="step current"> 
+          <div class="step current">
             <span>{{stepName}} </span>
-           </div>
+          </div>
         </div>
       </div>
 
@@ -47,25 +47,46 @@
               Rate each health dimension
               <span style="color:#000000"> You've rated {{nbreOfRated}}/{{nbreOfDimensions}}</span>
             </section>
+            <section *ngIf="userConnected == 'coach'">
+              <button class="meeting-pane__close-button close-button command command--unselected"
+                (click)="openAndcloseParticipantsList()">
+                <span *ngIf="opned"><i class="material-icons">skip_next</i></span>
+                <span *ngIf="!opned"><i class="material-icons">skip_previous</i></span>
+
+                <!-- <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M12.08,4.08L20,12L12.08,19.92L10.67,18.5L16.17,13H2V11H16.17L10.67,5.5L12.08,4.08M20,12V22H22V2H20V12Z"></path>
+                </svg> -->
+              </button>
+            </section>
           </section>
         </div>
-        <main class="main-inner-survey" style="height: 90%;overflow-y: auto;background-color: #eceff1;">
+        <div style="display: flex;height: 100%;">
+          <main class="main-inner-survey" style="height: 90%;overflow-y: auto;background-color: #eceff1;width: 100%;">
 
-          <div *ngFor="let survey of ListOfSurvey">
-            <app-main-survey [survey]="survey"></app-main-survey>
-            <hr />
-          </div>
+            <div *ngFor="let survey of ListOfSurvey">
+              <app-main-survey [survey]="survey" [userConnected]="userConnected"></app-main-survey>
+              <hr />
+            </div>
 
-          <main class="page__footer">
-            <button class="button button--large command command--unselected" style="margin:0 1em" (click)="selectedStep(1,stepps,'Summary')">
-              Submit
-              <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
-                <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-              </svg>
-            </button>
+            <main class="page__footer">
+              <button class="button button--large command command--unselected" style="margin:0 1em"
+                (click)="selectedStep(1,stepps,'Summary')">
+                Submit
+                <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                </svg>
+              </button>
 
+            </main>
           </main>
-        </main>
+
+          <div *ngIf="userConnected == 'coach'" id="rightSideConnectedParticipant" style="width: 0%;height: 100%;background-color: #eceff1;transition: 0.5s;">
+            <div>
+              test test
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div *ngIf="current == 1" style=" height: 100%;">
@@ -83,24 +104,30 @@
               <app-chart-radar></app-chart-radar>
               <div class="example-sidenav-content">
                 <div style="padding: 1rem;">
-                  <app-review-section [moyenne]="0.8" (selectedComments)="getSelectedObject($event)"></app-review-section>
+                  <app-review-section [moyenne]="0.8" (selectedComments)="getSelectedObject($event)">
+                  </app-review-section>
                 </div>
-               <div style="padding: 1rem;">
-                <app-review-section [moyenne]="1.2" (selectedComments)="getSelectedObject($event)"></app-review-section>
-               </div>
-               <div style="padding: 1rem;">
-                <app-review-section [moyenne]="2.2" (selectedComments)="getSelectedObject($event)"></app-review-section>
-               </div>
-               <div style="padding: 1rem;">
-                <app-review-section [moyenne]="3.2" (selectedComments)="getSelectedObject($event)"></app-review-section>
-               </div>
-               <div style="padding: 1rem;">
-                <app-review-section [moyenne]="4.5" (selectedComments)="getSelectedObject($event)"></app-review-section>
-               </div>
-              </div>          
+                <div style="padding: 1rem;">
+                  <app-review-section [moyenne]="1.2" (selectedComments)="getSelectedObject($event)">
+                  </app-review-section>
+                </div>
+                <div style="padding: 1rem;">
+                  <app-review-section [moyenne]="2.2" (selectedComments)="getSelectedObject($event)">
+                  </app-review-section>
+                </div>
+                <div style="padding: 1rem;">
+                  <app-review-section [moyenne]="3.2" (selectedComments)="getSelectedObject($event)">
+                  </app-review-section>
+                </div>
+                <div style="padding: 1rem;">
+                  <app-review-section [moyenne]="4.5" (selectedComments)="getSelectedObject($event)">
+                  </app-review-section>
+                </div>
+              </div>
             </div>
             <main class="page__footer">
-              <button class="button button--large command command--unselected" style="margin:0 1em" (click)="selectedStep(2,stepps,'Review');listOfComme = [];">
+              <button class="button button--large command command--unselected" style="margin:0 1em"
+                (click)="selectedStep(2,stepps,'Review');listOfComme = [];">
                 Review
                 <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
                   <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
@@ -110,7 +137,7 @@
           </main>
 
           <div id="rightSideSynthese" style="width: 0%;height: 100%;background-color: #eceff1;transition: 0.5s;">
-            <div *ngIf="type == 'comments'" style="padding: 2rem;" >
+            <div *ngIf="type == 'comments'" style="padding: 2rem;">
               <div class="carousel__opaque" *ngFor="let commentary of listOfComme; let i= index;">
                 <app-commentary [commentary]="commentary" [comments]="listOfComme"></app-commentary>
               </div>
@@ -134,7 +161,8 @@
         <main class="review__main">
           <app-main-review></app-main-review>
           <main class="page__footer">
-            <button class="button button--large command command--unselected" style="margin:0 1em" (click)="selectedStep(3,stepps,'Summary')">
+            <button class="button button--large command command--unselected" style="margin:0 1em"
+              (click)="selectedStep(3,stepps,'Summary')">
               Share
               <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
                 <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>

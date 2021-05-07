@@ -8,7 +8,7 @@
   <ngx-qrcode [elementType]="elementType" [value]="value" cssClass="coolQRCode" errorCorrectionLevel="L">
   </ngx-qrcode>
 
-  <button  routerLink="front/login" (click)="closePopUp()" class="button button--large command command--unselected"
+  <button  (click)="closePopUp();navigateTo();" class="button button--large command command--unselected"
     style="margin:0 1em">
     start session
   </button>

@@ -67,7 +67,7 @@ export class ReviewSectionComponent implements OnInit {
       type: 'empty',
       list: []
     }
-    let div = document.getElementById("rightSideSynthese")
+    let div = document.getElementById("rightSideSynthese");
     if (div.style.width != '0%') {
       div.style.width = '0%';
       div.style.padding = '0rem;'

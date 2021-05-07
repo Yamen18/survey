@@ -58,7 +58,7 @@
             </div>
         </mat-card>
 
-        <app-list-sub-session style="width: 100%;" *ngIf="survey.IsMultiSession"></app-list-sub-session>
+        <app-list-sub-session style="width: 100%;" *ngIf="survey.IsMultiSession" [isFrom]="isForm" ></app-list-sub-session>
 
     </div>
     <main class="page__footer">

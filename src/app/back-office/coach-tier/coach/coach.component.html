@@ -1,0 +1,34 @@
+<div class="body">
+    <mat-sidenav-container class="example-container" autosize>
+
+        <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+            <mat-nav-list>
+
+                <section class="navigation-drawer__header">
+                    <p style=" color: #9de8ea;text-align: center;">Connected User : <span>{{userConnected}}</span></p>
+                </section>
+
+
+
+                <nav class="step-navigation" #steppsBackOffice>
+                    <a (click)="selectedStep(0,steppsBackOffice)" routerLink="./" class="step-navigation__step navigation-drawer__item command
+                command--disabled command--selected step-navigation__step--current">Dashboard</a>
+
+                    <a (click)="selectedStep(1,steppsBackOffice)" routerLink="./surveys"
+                        class="step-navigation__step navigation-drawer__item command command--unselected">Session</a>
+
+
+                </nav>
+
+                <footer style=" position: absolute;bottom: 0px;">
+                    <button class="button_logout" (click)="logOut()">Logout</button>
+                </footer>
+            </mat-nav-list>
+        </mat-sidenav>
+
+
+        <div class="example-sidenav-content" style="overflow-y: auto;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-container>
+</div>

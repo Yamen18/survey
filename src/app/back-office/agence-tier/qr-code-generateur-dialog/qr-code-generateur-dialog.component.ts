@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-qr-code-generateur-dialog',
@@ -9,12 +10,21 @@ import { MatDialogRef } from '@angular/material';
 export class QrCodeGenerateurDialogComponent implements OnInit {
   elementType = 'url';
   value = 'http://localhost:4200/';
-  constructor(public dialogRef: MatDialogRef<QrCodeGenerateurDialogComponent>) { }
+  constructor(public dialogRef: MatDialogRef<QrCodeGenerateurDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: string,
+    private router: Router ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  closePopUp() {
+    this.dialogRef.close();
   }
 
-  closePopUp(){
-    this.dialogRef.close();
+  navigateTo(){
+    if(this.data =='coach'){
+      this.router.navigate(['']);
+    }else{
+      this.router.navigate(['front/login']);
+    }    
   }
 }

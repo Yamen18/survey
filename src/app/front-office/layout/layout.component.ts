@@ -11,7 +11,7 @@ import { SharedService } from 'src/app/Services/shared.service';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-  userConnected: string = 'user';
+  userConnected: string = 'coach';
 
   current: number = 0;
   ListOfSurvey: Survay[] = [];
@@ -21,6 +21,8 @@ export class LayoutComponent implements OnInit {
   agreementsList: Agreement[];
   type: string = '';
   stepName: string = 'Form';
+  opned: boolean = false;
+
   constructor(private invokeEventService: InvokeEventService, private sharedservice: SharedService) {
     this.invokeEventService.invokeChangeRatedNumber.subscribe(data => {
       if (data == 'changed') {
@@ -147,7 +149,19 @@ export class LayoutComponent implements OnInit {
     this.type = sendedObj.type;
   }
 
-  logOut(){
+  logOut() {
     this.sharedservice.logOut();
+  }
+
+  openAndcloseParticipantsList() {
+    let div = document.getElementById("rightSideConnectedParticipant");
+    if (div.style.width != '0%') {
+      div.style.width = '0%';
+      div.style.padding = '0rem;'
+    } else {
+      div.style.width = '33%';
+      div.style.padding = '1rem;'
+    }
+    this.opned = !this.opned;
   }
 }

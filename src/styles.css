@@ -45,8 +45,6 @@ html,
   align-items: center;
 }
 
-
-
 .example-container {
   height: 100%;
   width: 100%;
@@ -800,3 +798,4 @@ span{
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
     background-color: #00b8d4;
   }
+

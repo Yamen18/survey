@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/agence']);
     } else if (this.userName == 'participant') {
       this.router.navigate(['']);
+    }else if(this.userName == 'coach'){
+      this.router.navigate(['/coach']);
     }
   }
 }

@@ -18,7 +18,7 @@ import { QrCodeGenerateurDialogComponent } from '../qr-code-generateur-dialog/qr
 })
 export class NewSurveyComponent implements OnInit {
   survey: SurveyObj = new SurveyObj();
-
+  isForm:string='';
   companies: Company[] = [];
   templates: Template[] = [];
   coachs: Coach[] = [];
@@ -29,7 +29,6 @@ export class NewSurveyComponent implements OnInit {
   constructor(private _location: Location, private route: ActivatedRoute,
     private shared: SharedService, public dialog: MatDialog, private invokeEvent: InvokeEventService) {
     this.invokeEvent.isFromMultiSession.subscribe(data => {
-      console.log(data);
       this.survey.IsMultiSession = data;
     });
   }
@@ -47,6 +46,10 @@ export class NewSurveyComponent implements OnInit {
         }
       }
     );
+
+    this.route.parent.url.subscribe((urlPath) => {
+      this.isForm = urlPath[urlPath.length -1].path;
+    })
   }
 
   addNewSurvey() {
