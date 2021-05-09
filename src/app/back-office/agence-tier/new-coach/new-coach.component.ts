@@ -18,16 +18,16 @@ export class NewCoachComponent implements OnInit {
       params => {
         let selectedId = Number(params.get('id'));
         if (selectedId) {
-          this.coach = this.shared.sharedCoachs.find(coach => coach.Id == selectedId);
+          this.coach = this.shared.sharedCoachs.find(coach => coach.coach_id == selectedId);
         }
       }
     );
   }
 
   addNewCoach() {
-    let coach = this.shared.sharedCoachs.find(coach => coach.Id == this.coach.Id);
+    let coach = this.shared.sharedCoachs.find(coach => coach.coach_id == this.coach.coach_id);
     if (coach) {
-      let index = this.shared.sharedCoachs.findIndex(coach => coach.Id == coach.Id);
+      let index = this.shared.sharedCoachs.findIndex(coach => coach.coach_id == coach.coach_id);
       this.shared.sharedCoachs[index] = this.coach;
     } else {
       this.shared.sharedCoachs.push(this.coach);

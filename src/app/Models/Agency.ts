@@ -1,24 +1,24 @@
-import { Currency } from "./Currency";
+import { AgencyExchangeRate } from "./AgencyExchangeRate";
 
 export class Agency {
-  Id: number;
-  Name: string = '';
-  Email: string = '';
-  Phone: number;
-  Mobile: number;
-  Adress: string = '';
-  Zip: string = '';
-  City: string = '';
-  Country: string = '';
-  TaxIdentification: string = '';
-  TradeRegister: string = '';
-  Password: string = '';
-  SphereCoinsBonus: number;
-  SphereCoins: number;
-  TemplatePrice: number;
-  Currency: Currency[] = [];
+  agency_id: number;
+  name: string = '';
+  email: string = '';
+  phone: number;
+  mobile: number;
+  address: string = '';
+  zip_code: string = '';
+  city: string = '';
+  country: string = '';
+  tax_identification: string = '';
+  trade_licence: string = '';
+  password: string = '';
+  coins_bonus: number;
+  coins: number;
+  template_price: number;
+  agencyExchangeRates: AgencyExchangeRate[] = [];
 
   constructor() {
-    this.Id = Math.floor(Math.random() * 100);
+    this.agency_id = Math.floor(Math.random() * 100);
   }
 }

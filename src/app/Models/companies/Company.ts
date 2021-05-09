@@ -1,22 +1,21 @@
-import { Group } from "./Group";
-import { Participant } from "./Participant";
-
 export class Company {
 
-  Id: number;
-  Name: string = '';
-  Email: string = '';
-  Phone: number;
-  Mobile: number;
-  Adress: string = '';
-  Zip: string = '';
-  City: string = '';
-  Country: string = '';
-  TaxIdentification: string = '';
-  TradeRegister: string = '';
+  company_id: number;
+  agency_id: number;
+
+  name: string = '';
+  email: string = '';
+  phone: number;
+  mobile: number;
+  address: string = '';
+  zip_code: string = '';
+  city: string = '';
+  country: string = '';
+  tax_identification: string = '';
+  trade_licence: string = '';
 
   
   constructor() {
-    this.Id = Math.floor(Math.random() * 100);
+    this.company_id = Math.floor(Math.random() * 100);
   }
 }

@@ -66,6 +66,7 @@ import { ListSubSessionComponent } from './back-office/agence-tier/list-sub-sess
 import { PaymentComponent } from './back-office/agence-tier/payment/payment.component';
 import { AddGroupComponent } from './back-office/agence-tier/add-group/add-group.component';
 import { CoachComponent } from './back-office/coach-tier/coach/coach.component';
+import { ChatComponent } from './front-office/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { CoachComponent } from './back-office/coach-tier/coach/coach.component';
     ListSubSessionComponent,
     PaymentComponent,
     AddGroupComponent,
-    CoachComponent
+    CoachComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

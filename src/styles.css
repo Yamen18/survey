@@ -57,7 +57,7 @@ html,
 }
 
 .example-sidenav {
-  width: 10%;
+  width: 13%;
   background-color: #263238;
   user-select: none;
 }
@@ -785,6 +785,20 @@ span{
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-out;
+  }
+
+  .button_redirect {
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid var(--main-color);
+    background: var(--main-color);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 20px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-out;

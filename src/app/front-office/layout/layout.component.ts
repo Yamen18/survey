@@ -4,6 +4,7 @@ import { Commentary } from '../../Models/Commentary';
 import { InvokeEventService } from '../../Services/invokeEvent.Service';
 import { Agreement } from '../../Models/Agreement';
 import { SharedService } from 'src/app/Services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -23,7 +24,7 @@ export class LayoutComponent implements OnInit {
   stepName: string = 'Form';
   opned: boolean = false;
 
-  constructor(private invokeEventService: InvokeEventService, private sharedservice: SharedService) {
+  constructor(private invokeEventService: InvokeEventService, private sharedservice: SharedService, private router: Router) {
     this.invokeEventService.invokeChangeRatedNumber.subscribe(data => {
       if (data == 'changed') {
         this.nbreOfRated = 0;
@@ -163,5 +164,9 @@ export class LayoutComponent implements OnInit {
       div.style.padding = '1rem;'
     }
     this.opned = !this.opned;
+  }
+
+  redirectToSession() {
+    this.router.navigate(['/coach/surveys']);
   }
 }

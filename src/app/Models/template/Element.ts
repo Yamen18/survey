@@ -1,10 +1,12 @@
-import { Language } from "./language";
+import { ElementLanguage } from "./ElementLanguage";
 
 export class Element {
-    Id: number;
-    Languages:Language[]=[]
+  element_id: number;
+  template_id: number;
+
+  elementLanguages:ElementLanguage[]=[]
     constructor() {
-      this.Id = Math.floor(Math.random() * 100);
+      this.element_id = Math.floor(Math.random() * 100);
     }
   }
   

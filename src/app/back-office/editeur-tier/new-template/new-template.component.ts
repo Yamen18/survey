@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Language } from 'src/app/Models/template/language';
+import { ElementLanguage } from 'src/app/Models/template/ElementLanguage';
 import { Element } from 'src/app/Models/template/Element';
 import { ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { Location } from '@angular/common';
@@ -15,7 +15,7 @@ export class NewTemplateComponent implements OnInit {
   template: Template;
   constructor(private _location: Location, private route: ActivatedRoute, private shared: SharedService) {
     this.template = new Template();
-    this.template.Elements = [];
+    this.template.elements = [];
     this.initializationTemplate();
   }
 
@@ -24,7 +24,7 @@ export class NewTemplateComponent implements OnInit {
       params => {
         let selectedId = Number(params.get('id'));
         if (selectedId) {
-          this.template = this.shared.sharedtemplate.find(tem => tem.Id == selectedId);
+          this.template = this.shared.sharedtemplate.find(tem => tem.template_id == selectedId);
         }
       }
     );
@@ -32,18 +32,18 @@ export class NewTemplateComponent implements OnInit {
 
   initializationTemplate() {
     let template = new Element();
-    let lang = new Language();
-    template.Languages.push(lang);
-    this.template.Elements.push(template);
+    let lang = new ElementLanguage();
+    template.elementLanguages.push(lang);
+    this.template.elements.push(template);
   }
 
   addNewLang(templateIndex: number) {
-    let lang = new Language();
-    this.template.Elements[templateIndex].Languages.push(lang);
+    let lang = new ElementLanguage();
+    this.template.elements[templateIndex].elementLanguages.push(lang);
   }
 
   deleteLang(templateIndex: number, indexLang: number) {
-    this.template.Elements[templateIndex].Languages.splice(indexLang, 1);
+    this.template.elements[templateIndex].elementLanguages.splice(indexLang, 1);
   }
 
   addNewElement() {
@@ -51,14 +51,14 @@ export class NewTemplateComponent implements OnInit {
   }
 
   deleteTemplate(indexTemplate: number) {
-    this.template.Elements.splice(indexTemplate, 1);
+    this.template.elements.splice(indexTemplate, 1);
   }
 
   addNewTemplate() {
-    let temp = this.shared.sharedtemplate.find(tem => tem.Id == this.template.Id);
-    this.template.IsShared = true;
+    let temp = this.shared.sharedtemplate.find(tem => tem.template_id == this.template.template_id);
+    this.template.isGeneric = true;
     if (temp) {
-      let index = this.shared.sharedtemplate.findIndex(temp => temp.Id == temp.Id);
+      let index = this.shared.sharedtemplate.findIndex(temp => temp.template_id == temp.template_id);
       this.shared.sharedtemplate[index] = this.template;
     } else {
       this.shared.sharedtemplate.push(this.template);

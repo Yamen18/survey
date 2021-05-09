@@ -27,19 +27,19 @@ export class NewSubSessionComponent implements OnInit {
       params => {
         let selectedId = Number(params.get('idSubsession'));
         if (selectedId) {
-          this.sub_session = this.shared.selectedSession.Sub_session.find(session => session.Id == selectedId);
+          this.sub_session = this.shared.selectedSession.subSessions.find(session => session.sub_session_id == selectedId);
         }
       }
     );
   }
 
   addNewSubSession() {
-    let session = this.shared.selectedSession.Sub_session.find(ss => ss.Id == this.sub_session.Id);
+    let session = this.shared.selectedSession.subSessions.find(ss => ss.sub_session_id == this.sub_session.sub_session_id);
     if (session) {
-      let index = this.shared.selectedSession.Sub_session.findIndex(ss => ss.Id == session.Id);
-      this.shared.selectedSession.Sub_session[index] = this.sub_session;
+      let index = this.shared.selectedSession.subSessions.findIndex(ss => ss.sub_session_id == session.sub_session_id);
+      this.shared.selectedSession.subSessions[index] = this.sub_session;
     } else {
-      this.shared.selectedSession.Sub_session.push(this.sub_session);
+      this.shared.selectedSession.subSessions.push(this.sub_session);
     }
     this.back();
   }
@@ -47,7 +47,7 @@ export class NewSubSessionComponent implements OnInit {
 
 
   sendParamets() {
-    this.shared.selectedParticipants = this.sub_session.Participants;
+    this.shared.selectedParticipants = this.sub_session.participants;
   }
 
   back() {

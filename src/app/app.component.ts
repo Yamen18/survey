@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'TeamoSphere';
 
   constructor(private router: Router) {    
-    this.router.navigate(['']);
+     this.router.navigate(['chat']);
    }
 
 

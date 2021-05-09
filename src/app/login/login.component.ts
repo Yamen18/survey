@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     } else if (this.userName == 'participant') {
       this.router.navigate(['']);
     }else if(this.userName == 'coach'){
-      this.router.navigate(['/coach']);
+      this.router.navigate(['/coach/surveys']);
     }
   }
 }

@@ -18,9 +18,9 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     let g1 = new Group();
-    g1.Title = "team1";
+    g1.name = "team1";
     let g2 = new Group();
-    g2.Title = "team2";
+    g2.name = "team2";
     this.groups.push(g1, g2);
   }
 

@@ -15,11 +15,11 @@ export class AddGroupComponent implements OnInit {
 
   addNewGroup() {
     let group: Group = new Group();
-    this.session.Groups.push(group);
+    this.session.groups.push(group);
   }
 
   deleteGroup(index: number) {
-    this.session.Groups.splice(index, 1);
+    this.session.groups.splice(index, 1);
   }
 
 }

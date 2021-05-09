@@ -1,18 +1,31 @@
 import { Group } from "../companies/Group";
 import { Participant } from "../companies/Participant";
+import { SubSessionCoach } from "./SubSessionCoach";
 
 export class SubSession {
 
-    Id: number;
-    Name: string='';
-    Template_Id: number;
+    sub_session_id: number;
+
+    name: string='';
+    description: string;
+
+    template_id: number;
+    session_id: number;
+
+    Subsession_coach : SubSessionCoach;
+
+    //change to list of coaches 'object'
     Coach_Ids: number[]=[];
-    NbreParticipant: number;
-    Groups: Group[] = [];
-    Participants: Participant[] = [];
+
+
+    nbreParticipant: number;
+    groups: Group[] = [];
+    participants: Participant[] = [];
+    status: string = '';
+
     //IsPayed: Boolean = false;
 
     constructor() {
-        this.Id = Math.floor(Math.random() * 100);
+        this.sub_session_id = Math.floor(Math.random() * 100);
     }
 }

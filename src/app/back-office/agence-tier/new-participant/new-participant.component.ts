@@ -22,19 +22,19 @@ export class NewParticipantComponent implements OnInit {
       params => {
         let selectedId = Number(params.get('idParticipant'));
         if (selectedId) {
-          this.participant = this.shared.selectedSubSession.Participants.find(p => p.Id == selectedId);
+          this.participant = this.shared.selectedSubSession.participants.find(p => p.participant_id == selectedId);
         }
       }
     );
   }
 
   addNewParticipant() {
-    let participant = this.shared.selectedSubSession.Participants.find(p => p.Id == this.participant.Id);
+    let participant = this.shared.selectedSubSession.participants.find(p => p.participant_id == this.participant.participant_id);
     if (participant) {
-      let index = this.shared.selectedSubSession.Participants.findIndex(p => p.Id == participant.Id);
-      this.shared.selectedSubSession.Participants[index] = this.participant;
+      let index = this.shared.selectedSubSession.participants.findIndex(p => p.participant_id == participant.participant_id);
+      this.shared.selectedSubSession.participants[index] = this.participant;
     } else {
-      this.shared.selectedSubSession.Participants.push(this.participant);
+      this.shared.selectedSubSession.participants.push(this.participant);
     }
     this._location.back();
   }

@@ -1,15 +1,16 @@
 export class Coach {
-  Id: number;
-  Name: string = '';
-  Email: string = '';
-  Phone: number;
-  Mobile: number;
-  Adress: string = '';
-  Zip: string = '';
-  City: string = '';
-  Country: string = '';
-  Password: string = '';
+  coach_id: number;
+  agency_id: number;
+  name: string = '';
+  email: string = '';
+  phone: number;
+  mobile: number;
+  address: string = '';
+  zip_code: string = '';
+  city: string = '';
+  country: string = '';
+  password: string = '';
   constructor() {
-    this.Id = Math.floor(Math.random() * 100);
+    this.coach_id = Math.floor(Math.random() * 100);
   }
 }

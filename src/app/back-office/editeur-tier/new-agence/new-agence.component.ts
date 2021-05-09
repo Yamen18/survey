@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Agency } from 'src/app/Models/Agency';
 import { SharedService } from 'src/app/Services/shared.service';
-import { Currency } from 'src/app/Models/Currency';
+import { AgencyExchangeRate } from 'src/app/Models/AgencyExchangeRate';
 
 @Component({
   selector: 'app-new-agence',
@@ -22,16 +22,16 @@ export class NewAgenceComponent implements OnInit {
       params => {
         let selectedId = Number(params.get('id'));
         if (selectedId) {
-          this.agency = this.shared.sharedAgencies.find(agn => agn.Id == selectedId);
+          this.agency = this.shared.sharedAgencies.find(agn => agn.agency_id == selectedId);
         }
       }
     );
   }
 
   addNewAgency() {
-    let agence = this.shared.sharedAgencies.find(agn => agn.Id == this.agency.Id);
+    let agence = this.shared.sharedAgencies.find(agn => agn.agency_id == this.agency.agency_id);
     if (agence) {
-      let index = this.shared.sharedAgencies.findIndex(agn => agn.Id == agence.Id);
+      let index = this.shared.sharedAgencies.findIndex(agn => agn.agency_id == agence.agency_id);
       this.shared.sharedAgencies[index] = this.agency;
     } else {
       this.shared.sharedAgencies.push(this.agency);
@@ -41,11 +41,11 @@ export class NewAgenceComponent implements OnInit {
   }
 
   addNewCurrency() {
-    let currency: Currency = new Currency();
-    this.agency.Currency.push(currency);
+    let currency: AgencyExchangeRate = new AgencyExchangeRate();
+    this.agency.agencyExchangeRates.push(currency);
 
   }
   deleteCurrency(index: number) {
-    this.agency.Currency.splice(index, 1);
+    this.agency.agencyExchangeRates.splice(index, 1);
   }
 }

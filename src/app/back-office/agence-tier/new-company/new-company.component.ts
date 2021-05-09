@@ -20,16 +20,16 @@ export class NewCompanyComponent implements OnInit {
       params => {
         let selectedId = Number(params.get('id'));
         if (selectedId) {
-          this.company = this.shared.sharedCompanies.find(cmpy => cmpy.Id == selectedId);
+          this.company = this.shared.sharedCompanies.find(cmpy => cmpy.company_id == selectedId);
         }
       }
     );
   }
 
   addNewCompany() {
-    let company = this.shared.sharedCompanies.find(cmpy => cmpy.Id == this.company.Id);
+    let company = this.shared.sharedCompanies.find(cmpy => cmpy.company_id == this.company.company_id);
     if (company) {
-      let index = this.shared.sharedCompanies.findIndex(cmpy => cmpy.Id == company.Id);
+      let index = this.shared.sharedCompanies.findIndex(cmpy => cmpy.company_id == company.company_id);
       this.shared.sharedCompanies[index] = this.company;
     } else {
       this.shared.sharedCompanies.push(this.company);

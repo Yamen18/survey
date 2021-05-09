@@ -1,15 +1,22 @@
 export class Participant {
-    Id: number;
-    FirstName: string = '';
-    LastName: string = '';
-    Email: string = '';
-    Phone: number;
-    Mobile: number;
-    Adress: string = '';
-    Zip: string = '';
-    City: string = '';
-    GroupId: number;
+
+    participant_id: number;
+    firstName: string = '';
+    lastName: string = '';
+    email: string = '';
+
+    phone: number;
+    mobile: number;
+    
+    address: string = '';
+    zip_code: string = '';
+    city: string = '';
+    country: string = '';
+
+    group_id: number;
+    session_id: number;
+    
     constructor() {
-        this.Id = Math.floor(Math.random() * 100);
+        this.participant_id = Math.floor(Math.random() * 100);
     }
 }

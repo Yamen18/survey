@@ -19,27 +19,27 @@
 
 
                 <mat-form-field class="col-sm-12" style="padding-right: 5%;">
-                    <input [(ngModel)]="sub_session.Name" [ngModelOptions]="{standalone: true}" matInput
+                    <input [(ngModel)]="sub_session.name" [ngModelOptions]="{standalone: true}" matInput
                         placeholder="Session Name" required />
 
                 </mat-form-field>
 
                 <mat-form-field class=" col-sm-12">
                     <mat-label>Template</mat-label>
-                    <mat-select [(ngModel)]="sub_session.Template_Id" [ngModelOptions]="{standalone: true}">
-                        <mat-option *ngFor="let tmp of templates" [value]="tmp.Id">{{tmp.Name}}</mat-option>
+                    <mat-select [(ngModel)]="sub_session.template_id" [ngModelOptions]="{standalone: true}">
+                        <mat-option *ngFor="let tmp of templates" [value]="tmp.template_id">{{tmp.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class=" col-sm-12">
                     <mat-label>Coachs</mat-label>
                     <mat-select  [(ngModel)]="sub_session.Coach_Ids" [ngModelOptions]="{standalone: true}"  multiple>
-                      <mat-option *ngFor="let c of coachs" [value]="c.Id">{{c.Name}}</mat-option>
+                      <mat-option *ngFor="let c of coachs" [value]="c.Id">{{c.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
 
                 <mat-form-field class=" col-sm-12">
-                    <input matInput [(ngModel)]="sub_session.NbreParticipant" [ngModelOptions]="{standalone: true}"
+                    <input matInput [(ngModel)]="sub_session.nbreParticipant" [ngModelOptions]="{standalone: true}"
                         placeholder="Participant number" type="number" required />
                 </mat-form-field>
 

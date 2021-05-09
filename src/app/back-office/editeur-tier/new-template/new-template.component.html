@@ -19,18 +19,18 @@
             <br />
             <div>
               <mat-form-field class="col-md-4" style="padding-right: 5%;">
-                <input [(ngModel)]="template.Name" [ngModelOptions]="{standalone: true}" matInput placeholder="Name"
+                <input [(ngModel)]="template.name" [ngModelOptions]="{standalone: true}" matInput placeholder="Name"
                   required />
 
               </mat-form-field>
               <mat-form-field class="col-md-6" style="padding-right: 5%;">
-                <input [(ngModel)]="template.Description" [ngModelOptions]="{standalone: true}" matInput
+                <input [(ngModel)]="template.description" [ngModelOptions]="{standalone: true}" matInput
                   placeholder="Description" required />
               </mat-form-field>
             </div>
           </div>
 
-          <div class='row' style="margin-top: 15px;" *ngFor="let element of template.Elements;let i = index">
+          <div class='row' style="margin-top: 15px;" *ngFor="let element of template.elements;let i = index">
             <mat-card>
               <div style="display: flex;">
                 <mat-card-title class="col-md-10">Element</mat-card-title>
@@ -39,7 +39,7 @@
                     <mat-icon>add box</mat-icon>
                     Add new Element
                   </button>
-                  <button *ngIf="template.Elements.length > 1" type="button" mat-raised-button
+                  <button *ngIf="template.elements.length > 1" type="button" mat-raised-button
                     (click)="deleteTemplate(i)">
                     <mat-icon>remove_circle</mat-icon>
                     Delete Element
@@ -49,13 +49,13 @@
               </div>
 
               <mat-divider></mat-divider>
-              <div *ngFor="let lang of element.Languages;let j=index;">
+              <div *ngFor="let lang of element.elementLanguages;let j=index;">
                 <mat-divider></mat-divider>
                 <br />
                 <div>
                   <mat-form-field class="col-md-2" style="padding-right: 5%;">
                     <mat-label>Language</mat-label>
-                    <mat-select [(ngModel)]="lang.Name" [ngModelOptions]="{standalone: true}">
+                    <mat-select [(ngModel)]="lang.language" [ngModelOptions]="{standalone: true}">
                       <mat-option value="AF">Afrikaans</mat-option>
                       <mat-option value="SQ">Albanian</mat-option>
                       <mat-option value="AR">Arabic</mat-option>
@@ -132,16 +132,16 @@
 
                   </mat-form-field>
                   <mat-form-field class="col-md-3" style="padding-right: 5%;">
-                    <input [(ngModel)]="lang.Title" [ngModelOptions]="{standalone: true}" matInput placeholder="Title"
+                    <input [(ngModel)]="lang.name" [ngModelOptions]="{standalone: true}" matInput placeholder="Title"
                       type="text" required />
                   </mat-form-field>
 
                   <mat-form-field class="col-md-6" style="padding-right: 5%;">
-                    <input [(ngModel)]="lang.Description" [ngModelOptions]="{standalone: true}" matInput
+                    <input [(ngModel)]="lang.description" [ngModelOptions]="{standalone: true}" matInput
                       placeholder="Description" type="text" required />
                   </mat-form-field>
 
-                  <button *ngIf="element.Languages.length > 1" class="col-md-1" type="button" mat-raised-button
+                  <button *ngIf="element.elementLanguages.length > 1" class="col-md-1" type="button" mat-raised-button
                     (click)="deleteLang(i,j)">
                     <mat-icon>remove_circle</mat-icon>
                     Delete

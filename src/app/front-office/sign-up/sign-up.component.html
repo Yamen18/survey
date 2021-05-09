@@ -23,8 +23,8 @@
         <mat-form-field style="width: 100%;">
           <mat-label>Group</mat-label>
           <mat-select>
-            <mat-option *ngFor="let group of groups" [value]="group.Id">
-              {{group.Title}}
+            <mat-option *ngFor="let group of groups" [value]="group.group_id">
+              {{group.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>

@@ -13,7 +13,7 @@ import { QrCodeGenerateurDialogComponent } from '../qr-code-generateur-dialog/qr
 export class ListSubSessionComponent implements OnInit {
   @Input() isFrom:string;
   displayedColumns: string[] = ['name', 'action'];
-  dataSource = new MatTableDataSource<SubSession>(this.shared.selectedSession.Sub_session);
+  dataSource = new MatTableDataSource<SubSession>(this.shared.selectedSession.subSessions);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor(private shared: SharedService,private _location: Location,public dialog: MatDialog) { }
@@ -26,8 +26,8 @@ export class ListSubSessionComponent implements OnInit {
   }
 
   deleteSubSession(indexTemplate){
-    this.shared.selectedSession.Sub_session.splice(indexTemplate,1);
-    this.dataSource = new MatTableDataSource<SubSession>(this.shared.selectedSession.Sub_session);
+    this.shared.selectedSession.subSessions.splice(indexTemplate,1);
+    this.dataSource = new MatTableDataSource<SubSession>(this.shared.selectedSession.subSessions);
   }
 
   back(){

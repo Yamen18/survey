@@ -19,6 +19,7 @@ import { ListAgenceComponent } from './back-office/editeur-tier/list-agence/list
 import { ListTemplateComponent } from './back-office/editeur-tier/list-template/list-template.component';
 import { NewAgenceComponent } from './back-office/editeur-tier/new-agence/new-agence.component';
 import { NewTemplateComponent } from './back-office/editeur-tier/new-template/new-template.component';
+import { ChatComponent } from './front-office/chat/chat.component';
 import { LayoutComponent } from './front-office/layout/layout.component';
 import { SignUpComponent } from './front-office/sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
@@ -324,6 +325,7 @@ const routes: Routes = [
     ]
   },
   { path: 'front/login', component: SignUpComponent },
+  { path: 'chat', component: ChatComponent },
   { path: '', component: LayoutComponent }];
 
 

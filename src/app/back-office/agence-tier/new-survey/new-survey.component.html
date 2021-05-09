@@ -17,48 +17,48 @@
             <div>
 
                 <mat-form-field class="col-md-6" style="padding-right: 5%;">
-                    <input [(ngModel)]="survey.Name" [ngModelOptions]="{standalone: true}" matInput
+                    <input [(ngModel)]="survey.name" [ngModelOptions]="{standalone: true}" matInput
                         placeholder="Session Name" required />
 
                 </mat-form-field>
 
                 <mat-form-field class="col-md-6" style="padding-right: 5%;">
-                    <input [(ngModel)]="survey.Description" [ngModelOptions]="{standalone: true}" matInput
+                    <input [(ngModel)]="survey.description" [ngModelOptions]="{standalone: true}" matInput
                         placeholder="Description" type="text" required />
                 </mat-form-field>
 
                 <mat-form-field class=" col-sm-12">
                     <mat-label>Company</mat-label>
-                    <mat-select [(ngModel)]="survey.Company_Id" [ngModelOptions]="{standalone: true}">
-                        <mat-option *ngFor="let cmp of companies" [value]="cmp.Id">{{cmp.Name}}</mat-option>
+                    <mat-select [(ngModel)]="survey.company_id" [ngModelOptions]="{standalone: true}">
+                        <mat-option *ngFor="let cmp of companies" [value]="cmp.company_id">{{cmp.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field class=" col-sm-12">
                     <mat-label>Template</mat-label>
-                    <mat-select [(ngModel)]="survey.Template_Id" [ngModelOptions]="{standalone: true}">
-                        <mat-option *ngFor="let tmp of templates" [value]="tmp.Id">{{tmp.Name}}</mat-option>
+                    <mat-select [(ngModel)]="survey.template_id" [ngModelOptions]="{standalone: true}">
+                        <mat-option *ngFor="let tmp of templates" [value]="tmp.template_id">{{tmp.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field *ngIf="!survey.IsMultiSession" class=" col-sm-12">
+                <mat-form-field *ngIf="!survey.isMultiSession" class=" col-sm-12">
                     <mat-label>Coachs</mat-label>
                     <mat-select  [(ngModel)]="survey.Coach_Ids" [ngModelOptions]="{standalone: true}"  multiple>
-                      <mat-option *ngFor="let c of coachs" [value]="c.Id">{{c.Name}}</mat-option>
+                      <mat-option *ngFor="let c of coachs" [value]="c.coach_id">{{c.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
 
-                <mat-form-field *ngIf="!survey.IsMultiSession" class=" col-sm-12">
-                    <input matInput [(ngModel)]="survey.NbreParticipant" [ngModelOptions]="{standalone: true}"
+                <mat-form-field *ngIf="!survey.isMultiSession" class=" col-sm-12">
+                    <input matInput [(ngModel)]="survey.nbreParticipant" [ngModelOptions]="{standalone: true}"
                         placeholder="Participant number" type="number" required />
                 </mat-form-field>
 
-                <app-add-group *ngIf="!survey.IsMultiSession" [session]="survey"></app-add-group>
+                <app-add-group *ngIf="!survey.isMultiSession" [session]="survey"></app-add-group>
 
             </div>
         </mat-card>
 
-        <app-list-sub-session style="width: 100%;" *ngIf="survey.IsMultiSession" [isFrom]="isForm" ></app-list-sub-session>
+        <app-list-sub-session style="width: 100%;" *ngIf="survey.isMultiSession" [isFrom]="isForm" ></app-list-sub-session>
 
     </div>
     <main class="page__footer">
@@ -71,12 +71,12 @@
             Save
         </button>
 
-        <button *ngIf="survey.IsMultiSession" class="button button--large command command--unselected"
+        <button *ngIf="survey.isMultiSession" class="button button--large command command--unselected"
             style="margin:0 1em" routerLink="./new-sub-session">
             Add New Session
         </button>
 
-        <button *ngIf="!survey.IsMultiSession" class="button button--large command command--unselected" style="margin:0 1em"
+        <button *ngIf="!survey.isMultiSession" class="button button--large command command--unselected" style="margin:0 1em"
             routerLink="./participants" (click)="sendParamets()">
             Participant Management
         </button>

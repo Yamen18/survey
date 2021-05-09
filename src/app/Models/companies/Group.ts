@@ -1,9 +1,12 @@
 export class Group {
-    Id: number;
-    Title: string = '';
-    Description: string = '';
+  
+  group_id: number;
+  name: string = '';
+  description: string = '';
+  session_id: number;
 
-    constructor() {
-        this.Id = Math.floor(Math.random() * 100);
-      }
+
+  constructor() {
+    this.group_id = Math.floor(Math.random() * 100);
+  }
 }

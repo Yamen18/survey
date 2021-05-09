@@ -5,7 +5,7 @@ import { Coach } from "../Models/companies/Coach";
 import { Company } from "../Models/companies/Company";
 import { Participant } from "../Models/companies/Participant";
 import { SubSession } from "../Models/template/sub-session";
-import { SurveyObj } from "../Models/template/SurveyObj";
+import { Session } from "../Models/template/Session";
 import { Template } from "../Models/template/Tempate";
 import { VMoney } from "../Models/VMoney";
 
@@ -17,9 +17,9 @@ export class SharedService {
   sharedAgencies: Agency[] = [];
   sharedCompanies: Company[] = [];
   sharedCoachs: Coach[] = [];
-  sharedSurveys: SurveyObj[] = [];
+  sharedSurveys: Session[] = [];
   selectedCompany: Company;
-  selectedSession: SurveyObj;
+  selectedSession: Session;
   selectedSubSession: SubSession;
   selectedParticipants: Participant[] = [];
   constructor(private router: Router) {

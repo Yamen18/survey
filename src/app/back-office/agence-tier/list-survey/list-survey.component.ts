@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-import { SurveyObj } from 'src/app/Models/template/SurveyObj';
+import { Session } from 'src/app/Models/template/Session';
 import { InvokeEventService } from 'src/app/Services/invokeEvent.Service';
 import { SharedService } from 'src/app/Services/shared.service';
 import { QrCodeGenerateurDialogComponent } from '../qr-code-generateur-dialog/qr-code-generateur-dialog.component';
@@ -13,7 +13,7 @@ import { QrCodeGenerateurDialogComponent } from '../qr-code-generateur-dialog/qr
 })
 export class ListSurveyComponent implements OnInit {
   displayedColumns: string[] = ['name', 'action'];
-  dataSource = new MatTableDataSource<SurveyObj>(this.shared.sharedSurveys);
+  dataSource = new MatTableDataSource<Session>(this.shared.sharedSurveys);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   isFrom: string = '';
   constructor(private shared: SharedService, 
@@ -33,7 +33,7 @@ export class ListSurveyComponent implements OnInit {
 
   deleteSurvey(indexTemplate) {
     this.shared.sharedSurveys.splice(indexTemplate, 1);
-    this.dataSource = new MatTableDataSource<SurveyObj>(this.shared.sharedSurveys);
+    this.dataSource = new MatTableDataSource<Session>(this.shared.sharedSurveys);
     localStorage.setItem('survey', JSON.stringify(this.shared.sharedSurveys));
   }
 

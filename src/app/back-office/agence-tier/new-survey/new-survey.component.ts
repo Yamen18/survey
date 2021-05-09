@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SurveyObj } from 'src/app/Models/template/SurveyObj';
+import { Session } from 'src/app/Models/template/Session';
 import { SharedService } from 'src/app/Services/shared.service';
 import { Location } from '@angular/common';
 import { Company } from 'src/app/Models/companies/Company';
@@ -17,7 +17,7 @@ import { QrCodeGenerateurDialogComponent } from '../qr-code-generateur-dialog/qr
   styleUrls: ['./new-survey.component.css']
 })
 export class NewSurveyComponent implements OnInit {
-  survey: SurveyObj = new SurveyObj();
+  survey: Session = new Session();
   isForm:string='';
   companies: Company[] = [];
   templates: Template[] = [];
@@ -29,7 +29,7 @@ export class NewSurveyComponent implements OnInit {
   constructor(private _location: Location, private route: ActivatedRoute,
     private shared: SharedService, public dialog: MatDialog, private invokeEvent: InvokeEventService) {
     this.invokeEvent.isFromMultiSession.subscribe(data => {
-      this.survey.IsMultiSession = data;
+      this.survey.isMultiSession = data;
     });
   }
 
@@ -42,7 +42,7 @@ export class NewSurveyComponent implements OnInit {
       params => {
         let selectedId = Number(params.get('id'));
         if (selectedId) {
-          this.survey = this.shared.sharedSurveys.find(survy => survy.Id == selectedId);
+          this.survey = this.shared.sharedSurveys.find(survy => survy.session_id == selectedId);
         }
       }
     );
@@ -53,9 +53,9 @@ export class NewSurveyComponent implements OnInit {
   }
 
   addNewSurvey() {
-    let survey = this.shared.sharedSurveys.find(survy => survy.Id == this.survey.Id);
+    let survey = this.shared.sharedSurveys.find(survy => survy.session_id == this.survey.session_id);
     if (survey) {
-      let index = this.shared.sharedSurveys.findIndex(survy => survy.Id == survey.Id);
+      let index = this.shared.sharedSurveys.findIndex(survy => survy.session_id == survey.session_id);
       this.shared.sharedSurveys[index] = this.survey;
     } else {
       this.shared.sharedSurveys.push(this.survey);
@@ -85,6 +85,6 @@ export class NewSurveyComponent implements OnInit {
   }
 
   sendParamets() {
-    this.shared.selectedParticipants = this.survey.Participants;
+    this.shared.selectedParticipants = this.survey.participants;
   }
 }

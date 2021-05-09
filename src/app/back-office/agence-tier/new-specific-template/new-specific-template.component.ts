@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Language } from 'src/app/Models/template/language';
+import { ElementLanguage } from 'src/app/Models/template/ElementLanguage';
 import { Element } from 'src/app/Models/template/Element';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -15,7 +15,7 @@ export class NewSpecificTemplateComponent implements OnInit {
   template: Template;
   constructor(private _location: Location, private route: ActivatedRoute, private shared: SharedService) {
     this.template = new Template();
-    this.template.Elements = [];
+    this.template.elements = [];
     this.initializationTemplate();
   }
 
@@ -24,17 +24,17 @@ export class NewSpecificTemplateComponent implements OnInit {
       params => {
         let selectedId = Number(params.get('id'));
         if (selectedId) {
-          let template = this.shared.sharedtemplate.find(tem => tem.Id == selectedId);
+          let template = this.shared.sharedtemplate.find(tem => tem.template_id == selectedId);
           if (template) {
             this.template =
               JSON.parse(JSON.stringify(
-                this.shared.sharedtemplate.find(tem => tem.Id == selectedId)
+                this.shared.sharedtemplate.find(tem => tem.template_id == selectedId)
               ))
               ;
           } else {
             this.template =
               JSON.parse(JSON.stringify(
-                this.shared.specificTemplate.find(tem => tem.Id == selectedId)
+                this.shared.specificTemplate.find(tem => tem.template_id == selectedId)
               ));
           }
         }
@@ -44,18 +44,18 @@ export class NewSpecificTemplateComponent implements OnInit {
 
   initializationTemplate() {
     let template = new Element();
-    let lang = new Language();
-    template.Languages.push(lang);
-    this.template.Elements.push(template);
+    let lang = new ElementLanguage();
+    template.elementLanguages.push(lang);
+    this.template.elements.push(template);
   }
 
   addNewLang(templateIndex: number) {
-    let lang = new Language();
-    this.template.Elements[templateIndex].Languages.push(lang);
+    let lang = new ElementLanguage();
+    this.template.elements[templateIndex].elementLanguages.push(lang);
   }
 
   deleteLang(templateIndex: number, indexLang: number) {
-    this.template.Elements[templateIndex].Languages.splice(indexLang, 1);
+    this.template.elements[templateIndex].elementLanguages.splice(indexLang, 1);
   }
 
   addNewElement() {
@@ -63,23 +63,23 @@ export class NewSpecificTemplateComponent implements OnInit {
   }
 
   deleteTemplate(indexTemplate: number) {
-    this.template.Elements.splice(indexTemplate, 1);
+    this.template.elements.splice(indexTemplate, 1);
   }
 
   addNewTemplate() {
-    let temp = this.shared.sharedtemplate.find(tem => tem.Id == this.template.Id);
+    let temp = this.shared.sharedtemplate.find(tem => tem.template_id == this.template.template_id);
 
     if (temp) {
-      this.template.IsShared = false;
-      this.template.Id = Math.floor(Math.random() * 100);
+      this.template.isGeneric = false;
+      this.template.template_id = Math.floor(Math.random() * 100);
       this.shared.specificTemplate.push(this.template);
     } else {
-      temp = this.shared.specificTemplate.find(tem => tem.Id == this.template.Id);
+      temp = this.shared.specificTemplate.find(tem => tem.template_id == this.template.template_id);
       if (temp) {
-        let index = this.shared.specificTemplate.findIndex(temp => temp.Id == temp.Id);
+        let index = this.shared.specificTemplate.findIndex(temp => temp.template_id == temp.template_id);
         this.shared.specificTemplate[index] = this.template;
       } else {
-        this.template.IsShared = false;
+        this.template.isGeneric = false;
         this.shared.specificTemplate.push(this.template);
       }
     }

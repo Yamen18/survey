@@ -25,6 +25,8 @@
         </nav>
 
         <footer style=" position: absolute;bottom: 0px;">
+          <button class="button_redirect" (click)="redirectToSession()">Redirect To Session</button>
+
           <button class="button_logout" (click)="logOut()">Logout</button>
         </footer>
       </mat-nav-list>
@@ -32,7 +34,7 @@
 
     <div class="example-sidenav-content">
       <div fxFlex="row" fxLayoutAlign="center center" fxLayoutGap="10px" class="header"
-        style="display:flex;background-color: #005c71;">
+        style="display:flex;background-color: #005c71;height: 5%;">
         <div class="arrow-steps clearfix">
           <div class="step current">
             <span>{{stepName}} </span>
@@ -40,28 +42,24 @@
         </div>
       </div>
 
-      <div *ngIf="current == 0" style=" height: 100%;">
-        <div class="hidden-print step-header step-header--facilitator">
+      <div *ngIf="current == 0" style=" height: 95%;">
+        <div class="hidden-print step-header step-header--facilitator" style="height: 8%;">
           <section class="step-header__participant">
             <section class="step-header__instructions">
               Rate each health dimension
               <span style="color:#000000"> You've rated {{nbreOfRated}}/{{nbreOfDimensions}}</span>
             </section>
-            <section *ngIf="userConnected == 'coach'">
+            <!-- <section *ngIf="userConnected == 'coach'">
               <button class="meeting-pane__close-button close-button command command--unselected"
                 (click)="openAndcloseParticipantsList()">
                 <span *ngIf="opned"><i class="material-icons">skip_next</i></span>
                 <span *ngIf="!opned"><i class="material-icons">skip_previous</i></span>
-
-                <!-- <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
-                  <path d="M12.08,4.08L20,12L12.08,19.92L10.67,18.5L16.17,13H2V11H16.17L10.67,5.5L12.08,4.08M20,12V22H22V2H20V12Z"></path>
-                </svg> -->
               </button>
-            </section>
+            </section> -->
           </section>
         </div>
-        <div style="display: flex;height: 100%;">
-          <main class="main-inner-survey" style="height: 90%;overflow-y: auto;background-color: #eceff1;width: 100%;">
+        <div style="display: flex;height: 92%;">
+          <main class="main-inner-survey" style="overflow-y: auto;background-color: #eceff1;width: 100%;">
 
             <div *ngFor="let survey of ListOfSurvey">
               <app-main-survey [survey]="survey" [userConnected]="userConnected"></app-main-survey>
@@ -80,7 +78,8 @@
             </main>
           </main>
 
-          <div *ngIf="userConnected == 'coach'" id="rightSideConnectedParticipant" style="width: 0%;height: 100%;background-color: #eceff1;transition: 0.5s;">
+          <div *ngIf="userConnected == 'coach'"
+            style="width: 33%;height: 100%;background-color: #eceff1;transition: 0.5s;padding: 1rem;">
             <div>
               test test
             </div>
@@ -89,15 +88,15 @@
 
       </div>
 
-      <div *ngIf="current == 1" style=" height: 100%;">
-        <div class="hidden-print step-header step-header--facilitator" style="background-color: #f5f7f8;">
+      <div *ngIf="current == 1" style=" height: 95%;">
+        <div class="hidden-print step-header step-header--facilitator" style="background-color: #f5f7f8;height: 8%;">
           <section class="step-header__participant">
             <section class="step-header__instructions">
               Discuss and identify actions
             </section>
           </section>
         </div>
-        <div style="display:flex;height:100%">
+        <div style="display:flex;height:92%">
           <main class="review__main">
 
             <div style="padding:4em;">
@@ -150,15 +149,15 @@
         </div>
       </div>
 
-      <div *ngIf="current == 2" style=" height: 100%;">
-        <div class="hidden-print step-header step-header--facilitator" style="background-color: #f5f7f8;">
+      <div *ngIf="current == 2" style=" height: 95%;">
+        <div class="hidden-print step-header step-header--facilitator" style="background-color: #f5f7f8;height: 8%;">
           <section class="step-header__participant">
             <section class="step-header__instructions">
               Here's your current list of actions for review
             </section>
           </section>
         </div>
-        <main class="review__main">
+        <main class="review__main" style="height: 92%!important;">
           <app-main-review></app-main-review>
           <main class="page__footer">
             <button class="button button--large command command--unselected" style="margin:0 1em"
