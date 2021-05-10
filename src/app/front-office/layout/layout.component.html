@@ -13,7 +13,7 @@
           <p class="navigation-drawer__item command--selected">Team Health Check</p>
         </section>
 
-        <nav class="step-navigation" #stepps>
+        <nav id="steppsElement" class="step-navigation" #stepps>
           <a (click)="selectedStep(0,stepps,'Form')"
             class="step-navigation__step navigation-drawer__item command command--disabled command--selected step-navigation__step--current">Form</a>
           <a (click)="selectedStep(1,stepps,'Summary')"
@@ -68,7 +68,7 @@
 
             <main class="page__footer">
               <button class="button button--large command command--unselected" style="margin:0 1em"
-                (click)="selectedStep(1,stepps,'Summary')">
+                (click)="submitFrom(1,stepps,'Summary')">
                 Submit
                 <svg class="icon " viewBox="0 0 24 24" width="24" height="24">
                   <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>

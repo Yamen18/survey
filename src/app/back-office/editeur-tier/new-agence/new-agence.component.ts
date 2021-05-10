@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Agency } from 'src/app/Models/Agency';
 import { SharedService } from 'src/app/Services/shared.service';
 import { AgencyExchangeRate } from 'src/app/Models/AgencyExchangeRate';
+import { SharedApiService } from 'src/app/Services/sharedApi.service';
 
 @Component({
   selector: 'app-new-agence',
@@ -12,7 +13,10 @@ import { AgencyExchangeRate } from 'src/app/Models/AgencyExchangeRate';
 })
 export class NewAgenceComponent implements OnInit {
   agency: Agency;
-  constructor(private _location: Location, private route: ActivatedRoute, private shared: SharedService) { }
+  constructor(private _location: Location,
+     private route: ActivatedRoute, 
+     private shared: SharedService,
+     private wsAgency: SharedApiService) { }
 
   ngOnInit() {
     this.agency = new Agency();
@@ -29,22 +33,16 @@ export class NewAgenceComponent implements OnInit {
   }
 
   addNewAgency() {
-    let agence = this.shared.sharedAgencies.find(agn => agn.agency_id == this.agency.agency_id);
-    if (agence) {
-      let index = this.shared.sharedAgencies.findIndex(agn => agn.agency_id == agence.agency_id);
-      this.shared.sharedAgencies[index] = this.agency;
-    } else {
-      this.shared.sharedAgencies.push(this.agency);
-    }
-    this._location.back();
-    localStorage.setItem('agences', JSON.stringify(this.shared.sharedAgencies));
+    this.wsAgency.saveAgency(this.agency).subscribe(data=>{
+      this._location.back();
+    });
   }
 
   addNewCurrency() {
     let currency: AgencyExchangeRate = new AgencyExchangeRate();
     this.agency.agencyExchangeRates.push(currency);
-
   }
+
   deleteCurrency(index: number) {
     this.agency.agencyExchangeRates.splice(index, 1);
   }

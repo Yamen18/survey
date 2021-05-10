@@ -14,9 +14,6 @@ export class MainSurveyComponent implements OnInit {
   constructor(private invokeEventService:InvokeEventService) { }
 
   ngOnInit() {
-    this.invokeEventService.user.subscribe(data => {
-      this.userConnected = data;
-    })
   }
 
   addNewComment(searchElement) {

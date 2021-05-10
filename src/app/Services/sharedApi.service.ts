@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Agency } from "../Models/Agency";
 import { Coach } from "../Models/companies/Coach";
+import { Template } from "../Models/template/Tempate";
 import { EnvService } from "./env.service";
 
 const httpOptions = {
@@ -30,10 +31,6 @@ export class SharedApiService {
         return this.http.post<Agency>(this.env.apiUrl + "url partie back", agence)
     }
 
-    editAgency(agence: Agency): Observable<Agency> {
-        return this.http.put<Agency>(this.env.apiUrl + "url partie back", agence)
-    }
-
     deleteAgency(id: number) {
         return this.http.post(this.env.apiUrl + "remove?id" + id, httpOptions);
     }
@@ -49,13 +46,23 @@ export class SharedApiService {
         return this.http.post<Coach>(this.env.apiUrl + "url partie back", coach)
     }
 
-    editCoach(coach: Coach): Observable<Coach> {
-        return this.http.put<Coach>(this.env.apiUrl + "url partie back", coach)
-    }
-
     deleteCoach(id: number) {
         return this.http.post(this.env.apiUrl + "remove?id" + id, httpOptions);
     }
     // fin  coach 
+
+    // debut  Template
+    getAllTemplate(): Observable<Template[]> {
+        return this.http.get<Template[]>(this.env.apiUrl + "url partie back").pipe();
+    }
+
+    saveTemplate(template: Template): Observable<Template> {
+        return this.http.post<Template>(this.env.apiUrl + "url partie back", template)
+    }
+
+    deleteTemplate(id: number) {
+        return this.http.post(this.env.apiUrl + "remove?id" + id, httpOptions);
+    }
+    // fin  Template 
 
 }

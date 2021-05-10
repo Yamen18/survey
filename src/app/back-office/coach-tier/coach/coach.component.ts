@@ -7,10 +7,11 @@ import { SharedService } from 'src/app/Services/shared.service';
   styleUrls: ['./coach.component.css']
 })
 export class CoachComponent implements OnInit {
-  userConnected: string = 'Yamen';
+  userConnected: string;
   constructor(private sharedservice: SharedService) { }
 
   ngOnInit() {
+    this.userConnected = localStorage.getItem("userConnected")
   }
 
   selectedStep(stepId: number, element) {

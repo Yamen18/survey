@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Coach } from 'src/app/Models/companies/Coach';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from 'src/app/Services/shared.service';
+import { SharedApiService } from 'src/app/Services/sharedApi.service';
 
 @Component({
   selector: 'app-new-coach',
@@ -10,8 +11,11 @@ import { SharedService } from 'src/app/Services/shared.service';
   styleUrls: ['./new-coach.component.css']
 })
 export class NewCoachComponent implements OnInit {
-  coach:Coach=new Coach();
-  constructor(private _location: Location, private route: ActivatedRoute, private shared: SharedService) { }
+  coach: Coach = new Coach();
+  constructor(private _location: Location,
+    private route: ActivatedRoute,
+    private shared: SharedService,
+    private wsCoachService: SharedApiService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
@@ -25,15 +29,8 @@ export class NewCoachComponent implements OnInit {
   }
 
   addNewCoach() {
-    let coach = this.shared.sharedCoachs.find(coach => coach.coach_id == this.coach.coach_id);
-    if (coach) {
-      let index = this.shared.sharedCoachs.findIndex(coach => coach.coach_id == coach.coach_id);
-      this.shared.sharedCoachs[index] = this.coach;
-    } else {
-      this.shared.sharedCoachs.push(this.coach);
-    }
-    this._location.back();
-    localStorage.setItem('coach', JSON.stringify(this.shared.sharedCoachs));
+    this.wsCoachService.saveCoach(this.coach).subscribe(data => {
+      this._location.back();
+    });
   }
-
 }

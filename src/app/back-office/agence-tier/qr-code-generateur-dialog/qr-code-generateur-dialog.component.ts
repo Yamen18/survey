@@ -28,7 +28,7 @@ export class QrCodeGenerateurDialogComponent implements OnInit {
       let reqDto: ReqDto = new ReqDto();
       reqDto.session_id = this.data.session_id;
       reqDto.user = 'coach';
-      this.realTimeData.startSession(reqDto)
+      this.realTimeData.startSession(reqDto);
     } else {
       this.router.navigate(['front/login']);
     }

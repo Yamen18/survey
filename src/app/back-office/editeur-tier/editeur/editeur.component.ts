@@ -8,18 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./editeur.component.css']
 })
 export class EditeurComponent implements OnInit {
-  userConnected: string = 'editeur';
+  userConnected: string;
 
   constructor(private sharedservice: SharedService) { }
 
   ngOnInit() {
+    this.userConnected = localStorage.getItem("userConnected");
   }
 
   selectedStep(stepId: number, element) {
     this.sharedservice.selectedStep(stepId, element);
   }
 
-  logOut(){
+  logOut() {
     this.sharedservice.logOut();
   }
 }

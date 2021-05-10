@@ -1,10 +1,12 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Survay } from '../../Models/Survay';
 import { Commentary } from '../../Models/Commentary';
 import { InvokeEventService } from '../../Services/invokeEvent.Service';
 import { Agreement } from '../../Models/Agreement';
 import { SharedService } from 'src/app/Services/shared.service';
 import { Router } from '@angular/router';
+import { ReqDto } from 'src/app/Models/ReqDto';
+import { RealTimeDataService } from 'src/app/Services/RealTimeData.service';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
-  userConnected: string = 'coach';
+  userConnected: string;
 
   current: number = 0;
   ListOfSurvey: Survay[] = [];
@@ -24,7 +26,12 @@ export class LayoutComponent implements OnInit {
   stepName: string = 'Form';
   opned: boolean = false;
 
-  constructor(private invokeEventService: InvokeEventService, private sharedservice: SharedService, private router: Router) {
+  constructor(private invokeEventService: InvokeEventService,
+    private sharedservice: SharedService,
+    private router: Router,
+    private realTimeData: RealTimeDataService) {
+    this.userConnected = localStorage.getItem("userConnected")
+
     this.invokeEventService.invokeChangeRatedNumber.subscribe(data => {
       if (data == 'changed') {
         this.nbreOfRated = 0;
@@ -35,8 +42,11 @@ export class LayoutComponent implements OnInit {
         }
       }
     });
-    this.invokeEventService.user.subscribe(data => {
-      this.userConnected = data;
+
+    this.invokeEventService.submitForm.subscribe(data => {
+      if (data == 'validateResponse') {
+        this.submitFrom(1, document.getElementById('steppsElement'), 'Summary')
+      }
     })
   }
 
@@ -55,7 +65,7 @@ export class LayoutComponent implements OnInit {
     let quiz2: Survay = new Survay();
     quiz2.Id = 2;
     quiz2.QuestionTitle = "Easy to Release";
-    quiz2.Question = "Good: : Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
+    quiz2.Question = "Good: Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
     quiz2.Rating = 0;
     quiz2.Commentaryies.push(commentary2);
 
@@ -64,7 +74,7 @@ export class LayoutComponent implements OnInit {
     let quiz3: Survay = new Survay();
     quiz3.Id = 3;
     quiz3.QuestionTitle = "Easy to Release";
-    quiz3.Question = "Good: : Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
+    quiz3.Question = "Good: Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
     quiz3.Rating = 0;
     quiz3.Commentaryies.push(commentary3);
 
@@ -74,7 +84,7 @@ export class LayoutComponent implements OnInit {
     let quiz4: Survay = new Survay();
     quiz4.Id = 4;
     quiz4.QuestionTitle = "Easy to Release";
-    quiz4.Question = "Good: : Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
+    quiz4.Question = "Good: Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
     quiz4.Rating = 0;
     quiz4.Commentaryies.push(commentary4)
 
@@ -83,7 +93,7 @@ export class LayoutComponent implements OnInit {
     let quiz5: Survay = new Survay();
     quiz5.Id = 5;
     quiz5.QuestionTitle = "Easy to Release";
-    quiz5.Question = "Good: : Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
+    quiz5.Question = "Good: Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
     quiz5.Rating = 0;
     quiz5.Commentaryies.push(commentary5)
 
@@ -92,7 +102,7 @@ export class LayoutComponent implements OnInit {
     let quiz6: Survay = new Survay();
     quiz6.Id = 6;
     quiz6.QuestionTitle = "Easy to Release";
-    quiz6.Question = "Good: : Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
+    quiz6.Question = "Good: Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
     quiz6.Rating = 0;
     quiz6.Commentaryies.push(commentary6)
 
@@ -101,7 +111,7 @@ export class LayoutComponent implements OnInit {
     let quiz7: Survay = new Survay();
     quiz7.Id = 7;
     quiz7.QuestionTitle = "Easy to Release";
-    quiz7.Question = "Good: : Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
+    quiz7.Question = "Good: Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
     quiz7.Rating = 0;
     quiz7.Commentaryies.push(commentary7)
 
@@ -110,7 +120,7 @@ export class LayoutComponent implements OnInit {
     let quiz8: Survay = new Survay();
     quiz8.Id = 8;
     quiz8.QuestionTitle = "Easy to Release";
-    quiz8.Question = "Good: : Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
+    quiz8.Question = "Good: Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
     quiz8.Rating = 0;
     quiz8.Commentaryies.push(commentary8)
 
@@ -119,7 +129,7 @@ export class LayoutComponent implements OnInit {
     let quiz9: Survay = new Survay();
     quiz9.Id = 9;
     quiz9.QuestionTitle = "Easy to Release";
-    quiz9.Question = "Good: : Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
+    quiz9.Question = "Good: Releasing is simple, safe, painless and mostly automated.Bad: Releasing is risky, painful, lots of manual work and takes forever.";
     quiz9.Rating = 0;
     quiz9.Commentaryies.push(commentary9)
 
@@ -129,6 +139,25 @@ export class LayoutComponent implements OnInit {
 
   public openCloseSideNav(sidenav) {
     sidenav.opened = !sidenav.opened;
+  }
+
+  completedForm: boolean = false;
+
+  submitFrom(idStep: number, element, stepName: string) {
+    if (this.userConnected == "participant") {
+      if (this.completedForm = true && this.nbreOfDimensions == this.nbreOfRated && localStorage.getItem("fromIsCompleted") == "true") {
+        this.current = idStep;
+        this.sharedservice.selectedStep(idStep, element);
+        this.stepName = stepName;
+      } else {
+        this.completedForm = true;
+      }
+    } else {
+      let reqDto: ReqDto = new ReqDto();
+      reqDto.session_id = 0;
+      reqDto.user = 'coach';
+      this.realTimeData.validateForms(reqDto);
+    }
   }
 
   public selectedStep(idStep: number, element, stepName: string) {

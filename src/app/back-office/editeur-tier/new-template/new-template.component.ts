@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { Location } from '@angular/common';
 import { Template } from 'src/app/Models/template/Tempate';
 import { SharedService } from 'src/app/Services/shared.service';
+import { SharedApiService } from 'src/app/Services/sharedApi.service';
 
 @Component({
   selector: 'app-new-template',
@@ -13,7 +14,10 @@ import { SharedService } from 'src/app/Services/shared.service';
 })
 export class NewTemplateComponent implements OnInit {
   template: Template;
-  constructor(private _location: Location, private route: ActivatedRoute, private shared: SharedService) {
+  constructor(private _location: Location,
+    private route: ActivatedRoute,
+    private shared: SharedService,
+    private wsTemplate: SharedApiService) {
     this.template = new Template();
     this.template.elements = [];
     this.initializationTemplate();
@@ -55,15 +59,8 @@ export class NewTemplateComponent implements OnInit {
   }
 
   addNewTemplate() {
-    let temp = this.shared.sharedtemplate.find(tem => tem.template_id == this.template.template_id);
-    this.template.isGeneric = true;
-    if (temp) {
-      let index = this.shared.sharedtemplate.findIndex(temp => temp.template_id == temp.template_id);
-      this.shared.sharedtemplate[index] = this.template;
-    } else {
-      this.shared.sharedtemplate.push(this.template);
-    }
-    this._location.back();
-    localStorage.setItem('templates', JSON.stringify(this.shared.sharedtemplate));
+    this.wsTemplate.saveTemplate(this.template).subscribe(data => {
+      this._location.back();
+    });
   }
 }

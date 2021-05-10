@@ -17,12 +17,13 @@ export class LoginComponent implements OnInit {
   singIn() {
     if (this.userName == 'editeur') {
       this.router.navigate(['/editeur']);
+      localStorage.setItem("userConnected", "editeur");
     } else if (this.userName == 'agence') {
       this.router.navigate(['/agence']);
-    } else if (this.userName == 'participant') {
-      this.router.navigate(['']);
-    }else if(this.userName == 'coach'){
+      localStorage.setItem("userConnected", "agency");
+    } else if(this.userName == 'coach'){
       this.router.navigate(['/coach/surveys']);
+      localStorage.setItem("userConnected", "coach");
     }
   }
 }

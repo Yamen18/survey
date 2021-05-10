@@ -16,7 +16,7 @@ export class SignUpComponent implements OnInit {
   groups: Group[] = [];
   isAnonymous: boolean = false;
   isStarted: boolean = false;
-  constructor(private router: Router, private invokeEvent: InvokeEventService,private realTimeData: RealTimeDataService) {
+  constructor(private router: Router, private invokeEvent: InvokeEventService, private realTimeData: RealTimeDataService) {
     if (localStorage.getItem("isStarted") != undefined) {
       if (localStorage.getItem("isStarted") == 'true') {
         this.isStarted = true;
@@ -45,12 +45,11 @@ export class SignUpComponent implements OnInit {
 
   setParticipantInformation: boolean = false;
   signUp() {
-    if (localStorage.getItem("isStarted") == "true") {
-      this.invokeEvent.user.next("participant")
+    if (localStorage.getItem("isStarted") == "true" && this.setParticipantInformation) {
+      localStorage.setItem("userConnected", "participant");
       this.router.navigate(['']);
     } else {
       this.setParticipantInformation = true;
     }
   }
-
 }

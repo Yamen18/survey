@@ -17,14 +17,18 @@ export class RealTimeDataService {
     new signalR.HubConnectionBuilder().withUrl(this.apiUrl + "genericSocket")   // mapping to the chathub as in startup.cs
       .configureLogging(signalR.LogLevel.Information)
       .build();
-  readonly POST_URL =this.apiUrl + "api/SignalR/StartSession"
 
-  constructor(private http: HttpClient, private invokeEvent: InvokeEventService,private env:EnvService) {
+  readonly POST_URL_StartSession = this.apiUrl + "api/SignalR/StartSession";
+  readonly POST_URL_SubmitForm = this.apiUrl + "api/SignalR/SubmitFrom";
+
+  constructor(private http: HttpClient, private invokeEvent: InvokeEventService, private env: EnvService) {
     this.connection.onclose(async () => {
       await this.start();
     });
 
-    this.connection.on("SetStartSessionTrue", () => { this.setStartSessionTrue() })
+    this.connection.on("SetStartSessionTrue", () => { this.setStartSessionTrue() });
+
+    this.connection.on("SetSubmitFromTrue", () => { this.setSubmitFormTrue() });
     this.start();
   }
 
@@ -42,12 +46,20 @@ export class RealTimeDataService {
 
   /* ****************************** Public Mehods **************************************** */
   public startSession(requestDto: ReqDto) {
-    this.http.post(this.POST_URL, requestDto);
+    this.http.post(this.POST_URL_StartSession, requestDto);
   }
 
   setStartSessionTrue() {
     localStorage.setItem("isStarted", "true");
-    this.invokeEvent.startSession.next('isStarted');
+    this.invokeEvent.startSession.next("isStarted");
   }
 
+  public validateForms(requestDto: ReqDto) {
+    this.http.post(this.POST_URL_SubmitForm, requestDto);
+  }
+
+  setSubmitFormTrue() {
+    localStorage.setItem("fromIsCompleted", "true");
+    this.invokeEvent.submitForm.next("validateResponse")
+  }
 }
