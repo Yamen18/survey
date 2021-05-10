@@ -43,10 +43,14 @@ export class ListSurveyComponent implements OnInit {
     }, 10)
   }
 
-  openQrCodeDialog() {
+  openQrCodeDialog(session_id) {
+    let sendedObj = {
+      isFrom: this.isFrom,
+      session_id : session_id
+    }
     this.dialog.open(QrCodeGenerateurDialogComponent, {
       disableClose: false,
-      data:this.isFrom
+      data:sendedObj
     });
   }
 }

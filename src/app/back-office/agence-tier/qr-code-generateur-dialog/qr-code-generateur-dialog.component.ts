@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
+import { ReqDto } from 'src/app/Models/ReqDto';
+import { RealTimeDataService } from 'src/app/Services/RealTimeData.service';
 
 @Component({
   selector: 'app-qr-code-generateur-dialog',
@@ -11,20 +13,24 @@ export class QrCodeGenerateurDialogComponent implements OnInit {
   elementType = 'url';
   value = 'http://localhost:4200/';
   constructor(public dialogRef: MatDialogRef<QrCodeGenerateurDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string,
-    private router: Router ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private router: Router, private realTimeData: RealTimeDataService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   closePopUp() {
     this.dialogRef.close();
   }
 
-  navigateTo(){
-    if(this.data =='coach'){
+  navigateTo() {
+    if (this.data.isFrom == 'coach') {
       this.router.navigate(['']);
-    }else{
+      let reqDto: ReqDto = new ReqDto();
+      reqDto.session_id = this.data.session_id;
+      reqDto.user = 'coach';
+      this.realTimeData.startSession(reqDto)
+    } else {
       this.router.navigate(['front/login']);
-    }    
+    }
   }
 }

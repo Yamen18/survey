@@ -22,6 +22,8 @@ export class SharedService {
   selectedSession: Session;
   selectedSubSession: SubSession;
   selectedParticipants: Participant[] = [];
+
+
   constructor(private router: Router) {
     if (localStorage.getItem("companies") != undefined && localStorage.getItem("companies") != '') {
       this.sharedCompanies = JSON.parse(localStorage.getItem("companies"));

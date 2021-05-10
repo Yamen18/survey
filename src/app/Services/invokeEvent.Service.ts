@@ -8,5 +8,7 @@ export class InvokeEventService {
   invokeSendCompany:Subject<any> = new Subject();
   approuvePayment:Subject<any> = new Subject();
   isFromMultiSession:Subject<boolean> = new Subject();
+  startSession:Subject<any> = new Subject();
+  user:Subject<string> = new Subject();
   
 }

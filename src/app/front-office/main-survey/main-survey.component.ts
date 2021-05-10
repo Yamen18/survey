@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Survay } from '../../Models/Survay';
 import { Commentary } from '../../Models/Commentary';
+import { InvokeEventService } from 'src/app/Services/invokeEvent.Service';
 
 @Component({
   selector: 'app-main-survey',
@@ -10,9 +11,12 @@ import { Commentary } from '../../Models/Commentary';
 export class MainSurveyComponent implements OnInit {
   @Input() survey: Survay;
   @Input() userConnected: string;
-  constructor() { }
+  constructor(private invokeEventService:InvokeEventService) { }
 
   ngOnInit() {
+    this.invokeEventService.user.subscribe(data => {
+      this.userConnected = data;
+    })
   }
 
   addNewComment(searchElement) {

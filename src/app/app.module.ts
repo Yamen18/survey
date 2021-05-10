@@ -66,7 +66,9 @@ import { ListSubSessionComponent } from './back-office/agence-tier/list-sub-sess
 import { PaymentComponent } from './back-office/agence-tier/payment/payment.component';
 import { AddGroupComponent } from './back-office/agence-tier/add-group/add-group.component';
 import { CoachComponent } from './back-office/coach-tier/coach/coach.component';
-import { ChatComponent } from './front-office/chat/chat.component';
+import { RealTimeDataService } from './Services/RealTimeData.service';
+import { HttpClientModule } from '@angular/common/http';
+import { EnvServiceProvider } from './Services/env.service.provider';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,6 @@ import { ChatComponent } from './front-office/chat/chat.component';
     PaymentComponent,
     AddGroupComponent,
     CoachComponent,
-    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -129,10 +130,10 @@ import { ChatComponent } from './front-office/chat/chat.component';
     MatNativeDateModule,
     ChartsModule, MatCardModule, MatSortModule,
     MatTableModule, MatPaginatorModule, MatSelectModule, MatDialogModule,
-    NgxQRCodeModule,MatCheckboxModule
+    NgxQRCodeModule, MatCheckboxModule,HttpClientModule
   ],
-  providers: [MatDatepickerModule, InvokeEventService, ThemeService, SharedService],
-  entryComponents: [PaymentDialogComponent,QrCodeGenerateurDialogComponent],
+  providers: [MatDatepickerModule, InvokeEventService, ThemeService, SharedService,RealTimeDataService,EnvServiceProvider],
+  entryComponents: [PaymentDialogComponent, QrCodeGenerateurDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

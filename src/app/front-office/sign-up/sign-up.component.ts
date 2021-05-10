@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Group } from 'src/app/Models/companies/Group';
+import { InvokeEventService } from 'src/app/Services/invokeEvent.Service';
+import { RealTimeDataService } from 'src/app/Services/RealTimeData.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,10 +15,23 @@ export class SignUpComponent implements OnInit {
   labelPosition: 'before' | 'after' = 'after';
   groups: Group[] = [];
   isAnonymous: boolean = false;
-
-  constructor(private router: Router) { }
+  isStarted: boolean = false;
+  constructor(private router: Router, private invokeEvent: InvokeEventService,private realTimeData: RealTimeDataService) {
+    if (localStorage.getItem("isStarted") != undefined) {
+      if (localStorage.getItem("isStarted") == 'true') {
+        this.isStarted = true;
+      }
+    } else {
+      localStorage.setItem("isStarted", 'false');
+    }
+  }
 
   ngOnInit() {
+    this.invokeEvent.startSession.subscribe(data => {
+      if (data == 'isStarted') {
+        this.signUp();
+      }
+    })
     let g1 = new Group();
     g1.name = "team1";
     let g2 = new Group();
@@ -27,8 +42,15 @@ export class SignUpComponent implements OnInit {
   changeTypeConnection(event) {
     this.isAnonymous = event.checked;
   }
-  signUp(){
-    this.router.navigate(['']);
+
+  setParticipantInformation: boolean = false;
+  signUp() {
+    if (localStorage.getItem("isStarted") == "true") {
+      this.invokeEvent.user.next("participant")
+      this.router.navigate(['']);
+    } else {
+      this.setParticipantInformation = true;
+    }
   }
 
 }

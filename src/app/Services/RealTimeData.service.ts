@@ -1,8 +1,9 @@
-import { Injectable, OnInit } from '@angular/core';
-import * as signalR from '@microsoft/signalr';          // import signalR
+import { Injectable } from '@angular/core';
+import * as signalR from '@microsoft/signalr';// import signalR
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
-import { MessageDto } from '../Models/Dto/MessageDto';
+import { ReqDto } from '../Models/ReqDto';
+import { InvokeEventService } from './invokeEvent.Service';
+import { EnvService } from './env.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,21 +12,20 @@ import { MessageDto } from '../Models/Dto/MessageDto';
 
 export class RealTimeDataService {
 
-   private  connection: any = 
-   new signalR.HubConnectionBuilder().withUrl("https://localhost:44348/chatsocket")   // mapping to the chathub as in startup.cs
-                                         .configureLogging(signalR.LogLevel.Information)
-                                         .build();
-   readonly POST_URL = "https://localhost:44348/api/chat/send"
+  apiUrl = this.env.apiUrl;
+  private connection: any =
+    new signalR.HubConnectionBuilder().withUrl(this.apiUrl + "genericSocket")   // mapping to the chathub as in startup.cs
+      .configureLogging(signalR.LogLevel.Information)
+      .build();
+  readonly POST_URL =this.apiUrl + "api/SignalR/StartSession"
 
-  private receivedMessageObject: MessageDto = new MessageDto();
-  private sharedObj = new Subject<MessageDto>();
-
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private invokeEvent: InvokeEventService,private env:EnvService) {
     this.connection.onclose(async () => {
       await this.start();
     });
-   this.connection.on("ReceiveOne", (user, message) => { this.mapReceivedMessage(user, message); });
-   this.start();                 
+
+    this.connection.on("SetStartSessionTrue", () => { this.setStartSessionTrue() })
+    this.start();
   }
 
 
@@ -37,26 +37,17 @@ export class RealTimeDataService {
     } catch (err) {
       console.log(err);
       setTimeout(() => this.start(), 5000);
-    } 
+    }
   }
-
-  private mapReceivedMessage(user: string, message: string): void {
-    this.receivedMessageObject.user = user;
-    this.receivedMessageObject.msgText = message;
-    this.sharedObj.next(this.receivedMessageObject);
- }
 
   /* ****************************** Public Mehods **************************************** */
-
-  // Calls the controller method
-  public broadcastMessage(msgDto: any) {
-    this.http.post(this.POST_URL, msgDto).subscribe(data => console.log(data));
-    // this.connection.invoke("SendMessage1", msgDto.user, msgDto.msgText).catch(err => console.error(err));    // This can invoke the server method named as "SendMethod1" directly.
+  public startSession(requestDto: ReqDto) {
+    this.http.post(this.POST_URL, requestDto);
   }
 
-  public retrieveMappedObject(): Observable<MessageDto> {
-    return this.sharedObj.asObservable();
+  setStartSessionTrue() {
+    localStorage.setItem("isStarted", "true");
+    this.invokeEvent.startSession.next('isStarted');
   }
-
 
 }

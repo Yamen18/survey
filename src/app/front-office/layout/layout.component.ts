@@ -34,6 +34,9 @@ export class LayoutComponent implements OnInit {
           }
         }
       }
+    });
+    this.invokeEventService.user.subscribe(data => {
+      this.userConnected = data;
     })
   }
 
