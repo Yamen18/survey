@@ -25,7 +25,8 @@
         </nav>
 
         <footer style=" position: absolute;bottom: 0px;">
-          <button class="button_redirect" (click)="redirectToSession()">Redirect To Session</button>
+          <button *ngIf="userConnected =='coach'" class="button_redirect" (click)="redirectToSession()">Redirect To
+            Session</button>
 
           <button class="button_logout" (click)="logOut()">Logout</button>
         </footer>

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
-import { ReqDto } from 'src/app/Models/ReqDto';
+import { ReqDto } from 'src/app/Models/DTO/ReqDto';
 import { RealTimeDataService } from 'src/app/Services/RealTimeData.service';
 
 @Component({

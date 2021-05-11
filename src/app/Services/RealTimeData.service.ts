@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';// import signalR
 import { HttpClient } from '@angular/common/http';
-import { ReqDto } from '../Models/ReqDto';
+import { ReqDto } from '../Models/DTO/ReqDto';
 import { InvokeEventService } from './invokeEvent.Service';
 import { EnvService } from './env.service';
+import { ParticipantFormInformationDto } from '../Models/DTO/participantFormInformationDto';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class RealTimeDataService {
 
   readonly POST_URL_StartSession = this.apiUrl + "api/SignalR/StartSession";
   readonly POST_URL_SubmitForm = this.apiUrl + "api/SignalR/SubmitFrom";
+  readonly POST_URL_StateFormParticipant = this.apiUrl + "api/SignalR/StateForm";
 
   constructor(private http: HttpClient, private invokeEvent: InvokeEventService, private env: EnvService) {
     this.connection.onclose(async () => {
@@ -29,6 +31,8 @@ export class RealTimeDataService {
     this.connection.on("SetStartSessionTrue", () => { this.setStartSessionTrue() });
 
     this.connection.on("SetSubmitFromTrue", () => { this.setSubmitFormTrue() });
+
+    this.connection.on("SetStateFormParticipant", () => { this.setStateFormParticipant() });
     this.start();
   }
 
@@ -46,7 +50,9 @@ export class RealTimeDataService {
 
   /* ****************************** Public Mehods **************************************** */
   public startSession(requestDto: ReqDto) {
-    this.http.post(this.POST_URL_StartSession, requestDto);
+    this.http.post(this.POST_URL_StartSession, requestDto).subscribe(data => {
+      console.log(data);
+    })
   }
 
   setStartSessionTrue() {
@@ -55,11 +61,24 @@ export class RealTimeDataService {
   }
 
   public validateForms(requestDto: ReqDto) {
-    this.http.post(this.POST_URL_SubmitForm, requestDto);
+    this.http.post(this.POST_URL_SubmitForm, requestDto).subscribe(data => {
+      console.log(data);
+    });
   }
 
   setSubmitFormTrue() {
-    localStorage.setItem("fromIsCompleted", "true");
+    localStorage.setItem("formIsCompleted", "true");
+    this.invokeEvent.submitForm.next("validateResponse")
+  }
+
+  sendFormStateParticipant(participantFormInformationDto: ParticipantFormInformationDto) {
+    this.http.post(this.POST_URL_StateFormParticipant, participantFormInformationDto).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  setStateFormParticipant() {
+    localStorage.setItem("formIsCompleted", "true");
     this.invokeEvent.submitForm.next("validateResponse")
   }
 }

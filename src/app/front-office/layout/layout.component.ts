@@ -5,8 +5,9 @@ import { InvokeEventService } from '../../Services/invokeEvent.Service';
 import { Agreement } from '../../Models/Agreement';
 import { SharedService } from 'src/app/Services/shared.service';
 import { Router } from '@angular/router';
-import { ReqDto } from 'src/app/Models/ReqDto';
+import { ReqDto } from 'src/app/Models/DTO/ReqDto';
 import { RealTimeDataService } from 'src/app/Services/RealTimeData.service';
+import { ParticipantFormInformationDto } from 'src/app/Models/DTO/participantFormInformationDto';
 
 @Component({
   selector: 'app-layout',
@@ -40,6 +41,13 @@ export class LayoutComponent implements OnInit {
             this.nbreOfRated++;
           }
         }
+        let participantInfomation: ParticipantFormInformationDto = new ParticipantFormInformationDto();
+        participantInfomation.coach_id = 12;
+        participantInfomation.session_id = 6;
+        participantInfomation.user = this.userConnected;
+        participantInfomation.nbreOfRated = this.nbreOfRated;
+        participantInfomation.nbreOfDimensions = this.nbreOfDimensions;
+        this.realTimeData.sendFormStateParticipant(participantInfomation);
       }
     });
 
@@ -145,14 +153,17 @@ export class LayoutComponent implements OnInit {
 
   submitFrom(idStep: number, element, stepName: string) {
     if (this.userConnected == "participant") {
-      if (this.completedForm = true && this.nbreOfDimensions == this.nbreOfRated && localStorage.getItem("fromIsCompleted") == "true") {
+      if (this.completedForm = true && this.nbreOfDimensions == this.nbreOfRated && localStorage.getItem("formIsCompleted") == "true") {
         this.current = idStep;
         this.sharedservice.selectedStep(idStep, element);
         this.stepName = stepName;
       } else {
         this.completedForm = true;
       }
-    } else {
+    } else if (localStorage.getItem("formIsCompleted") != "true") {
+      this.current = idStep;
+      this.sharedservice.selectedStep(idStep, element);
+      this.stepName = stepName;
       let reqDto: ReqDto = new ReqDto();
       reqDto.session_id = 0;
       reqDto.user = 'coach';
